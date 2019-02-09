@@ -1,34 +1,34 @@
 export const icons = {
   login: {
     pack: "fas",
-    icon: "fa-sign-in-alt",
+    icon: "sign-in-alt",
   },
   logout: {
     pack: "fas",
-    icon: "fa-sign-out-alt",
+    icon: "sign-out-alt",
   },
   register: {
     pack: "fas",
-    icon: "fa-user-plus",
+    icon: "user-plus",
   },
   addApt: {
     pack: "far",
-    icon: "fa-plus-square",
+    icon: "plus-square",
   },
   prices: {
     pack: "fas",
-    icon: "fa-money-check",
+    icon: "money-check",
   },
   terms: {
     pack: "fas",
-    icon: "fa-file-alt",
+    icon: "file-alt",
   },
   contact: {
     pack: "fas",
-    icon: "fa-envelope",
+    icon: "envelope",
   },
   bolt: {
     pack: "fas",
-    icon: "fas fa-bolt",
+    icon: "bolt",
   },
 };
