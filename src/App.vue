@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="is-flex">
     <Navbar/>
     <main class="main-content">
       <router-view></router-view>
@@ -25,4 +25,12 @@ export default {
 </script>
 
 <style lang="scss">
+#app {
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.main-content {
+  flex: 1;
+}
 </style>
