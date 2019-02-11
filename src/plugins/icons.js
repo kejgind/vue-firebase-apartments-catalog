@@ -11,7 +11,7 @@ export const icons = {
     pack: "fas",
     icon: "user-plus",
   },
-  addApt: {
+  add: {
     pack: "far",
     icon: "plus-square",
   },
@@ -30,5 +30,9 @@ export const icons = {
   bolt: {
     pack: "fas",
     icon: "bolt",
+  },
+  user: {
+    pack: "fas",
+    icon: "user",
   },
 };

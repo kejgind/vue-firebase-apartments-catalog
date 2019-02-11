@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <b-icon :pack="icons.logout.pack" :icon="icons.logout.icon" type="is-warning"></b-icon>
-  </div>
+  <div>Home</div>
 </template>
 
 <script>
