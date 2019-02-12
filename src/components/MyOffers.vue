@@ -8,7 +8,7 @@
         </p>
       </figure>
       <div class="media-content is-flex">
-        <h2 class="is-size-5 has-text-weight-bold">{{offer.name}}</h2>
+        <h2 class="is-size-5 has-text-weight-bold">{{offer.title}}</h2>
         <p>
           <span class="has-text-weight-semibold">Adres:</span>
           {{offer.address.street}}, {{offer.address.code}} {{offer.address.city}}
@@ -34,7 +34,7 @@ export default {
       offers: [
         {
           id: 1,
-          name: "Przylesie 4 pokoje z wyposażeniem po remoncie",
+          title: "Przylesie 4 pokoje z wyposażeniem po remoncie",
           img: {
             src: "img-01.jpeg",
             alt: "nazwa"
@@ -48,7 +48,7 @@ export default {
         },
         {
           id: 2,
-          name: "Super wygodne 2 pokoje z wyposażeniem",
+          title: "Super wygodne 2 pokoje z wyposażeniem",
           img: {
             src: "img-02.jpeg",
             alt: "nazwa"
@@ -62,7 +62,7 @@ export default {
         },
         {
           id: 3,
-          name: "Super wygodne 2 pokoje z wyposażeniem",
+          title: "Super wygodne 2 pokoje z wyposażeniem",
           img: {
             src: "img-03.jpeg",
             alt: "nazwa"
@@ -76,7 +76,7 @@ export default {
         },
         {
           id: 4,
-          name: "Super wygodne 2 pokoje z wyposażeniem",
+          title: "Super wygodne 2 pokoje z wyposażeniem",
           img: {
             src: "img-04.jpeg",
             alt: "nazwa"
@@ -90,7 +90,7 @@ export default {
         },
         {
           id: 5,
-          name: "Super wygodne 2 pokoje z wyposażeniem",
+          title: "Super wygodne 2 pokoje z wyposażeniem",
           img: {
             src: "img-05.jpeg",
             alt: "nazwa"
