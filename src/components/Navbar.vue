@@ -33,13 +33,13 @@
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <router-link class="button is-primary" to="/dashboard">
+                <router-link class="button is-info" to="/panel/dane">
                   <b-icon :pack="icons.user.pack" :icon="icons.user.icon"></b-icon>
                   <span>User</span>
                 </router-link>
               </p>
               <p class="control">
-                <router-link class="button is-outlined is-warning" to="/dashboard">
+                <router-link class="button is-outlined is-warning" to="/panel/dodaj">
                   <b-icon :pack="icons.add.pack" :icon="icons.add.icon"></b-icon>
                   <span>Dodaj ogłoszenie</span>
                 </router-link>

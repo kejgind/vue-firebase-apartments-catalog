@@ -34,14 +34,14 @@
               </router-link>
               <router-link
                 class="has-text-weight-normal has-text-white is-block-mobile has-text-centered pa-2"
-                to="/login"
+                to="/panel/dodaj"
               >
                 <b-icon :pack="icons.add.pack" :icon="icons.add.icon" type="is-warning"></b-icon>
                 <span class="px-1">Dodaj ogłoszenie</span>
               </router-link>
               <router-link
                 class="has-text-weight-normal has-text-white is-block-mobile has-text-centered pa-2"
-                to="/login"
+                to="/kontakt"
               >
                 <b-icon :pack="icons.contact.pack" :icon="icons.contact.icon" type="is-warning"></b-icon>
                 <span class="px-1">Kontakt</span>

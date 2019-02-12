@@ -3,8 +3,13 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
-import Dashboard from "./views/Dashboard.vue";
+import Contact from "./components/Contact.vue";
 import OfferView from "./views/OfferView.vue";
+import Dashboard from "./views/Dashboard.vue";
+import MyOffers from "./components/MyOffers.vue";
+import AddOffer from "./components/AddOffer.vue";
+import EditProfile from "./components/EditProfile.vue";
+
 
 Vue.use(Router);
 
@@ -28,14 +33,37 @@ export default new Router({
       component: Register,
     },
     {
-      path: "/dashboard",
-      name: "dashboard",
+      path: "/panel",
+      name: "panel",
       component: Dashboard,
+      children: [
+        {
+          path:"ogloszenia",
+          component: MyOffers,
+        },
+        {
+          path:"dodaj",
+          component: AddOffer,
+        },
+        {
+          path:"edytuj",
+          component: AddOffer,
+        },
+        {
+          path:"dane",
+          component: EditProfile,
+        },
+      ]
     },
     {
-      path: "/oferta/:id",
+      path: "/oferta",
       name: "oferta",
       component: OfferView,
+    },
+    {
+      path: "/kontakt",
+      name: "kontakt",
+      component: Contact,
     },
   ],
 });
