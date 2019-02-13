@@ -1,34 +1,41 @@
 <template>
   <div class="my-offers">
     <h1 class="is-size-4 has-text-weight-semibold mb-4">Lista ogłoszeń</h1>
-    <article class="media" v-for="offer in offers" :key="offer.id">
-      <figure class="media-left">
-        <p class="image offer-img">
-          <img :src="getImgUrl(offer.img.src)" :alt="offer.img.alt">
-        </p>
-      </figure>
-      <div class="media-content is-flex">
-        <h2 class="is-size-5 has-text-weight-bold">{{offer.title}}</h2>
-        <p>
-          <span class="has-text-weight-semibold">Adres:</span>
-          {{offer.address.street}}, {{offer.address.code}} {{offer.address.city}}
-        </p>
-        <p>
-          <span class="has-text-weight-semibold">Cena sprzedaży:</span>
-          {{offer.price}} PLN
-        </p>
-        <div class="buttons">
-          <button class="button is-danger" to="/panel/ogloszenia">Usuń</button>
-          <router-link class="button is-warning" to="/panel/edytuj">Edytuj</router-link>
-          <router-link class="button is-info" to="/oferta">Zobacz</router-link>
-        </div>
+    <div class="columns is-multiline is-variable is-2">
+      <div class="column is-6-tablet is-4-widescreen mb-2" v-for="offer in offers" :key="offer.id">
+        <article class="card">
+          <div class="card-image">
+            <figure class="image is-16by9">
+              <img :src="getImgUrl(offer.img.src)" :alt="offer.img.alt">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="card-title-wrap">
+              <h2 class="is-size-6 has-text-weight-bold mb-1">{{offer.title}}</h2>
+            </div>
+            <p class="mb-1">
+              <span class="has-text-weight-semibold">Adres:</span>
+              {{offer.address.street}}, {{offer.address.code}} {{offer.address.city}}
+            </p>
+            <p class="mb-3">
+              <span class="has-text-weight-semibold">Cena sprzedaży:</span>
+              {{offer.price}} PLN
+            </p>
+            <div class="buttons">
+              <button class="button is-danger is-small" to="/panel/ogloszenia">Usuń</button>
+              <router-link class="button is-warning is-small" to="/panel/edytuj">Edytuj</router-link>
+              <router-link class="button is-info is-small" to="/oferta">Zobacz</router-link>
+            </div>
+          </div>
+        </article>
       </div>
-    </article>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: "ogloszenia",
   data() {
     return {
       offers: [
@@ -114,17 +121,7 @@ export default {
 </script>
 
 <style lang="scss">
-.media-content {
-  flex-direction: column;
-  justify-content: space-between;
-  height: 150px;
-}
-
-.offer-img {
-  width: 230px;
-  height: 150px;
-  object-fit: cover;
-  overflow: hidden;
-  object-position: 50% 50%;
+.card-title-wrap {
+  height: 3rem;
 }
 </style>

@@ -35,4 +35,20 @@ export const icons = {
     pack: "fas",
     icon: "user",
   },
+  search: {
+    pack: "fas",
+    icon: "search",
+  },
+  open: {
+    pack: "fas",
+    icon: "search",
+  },
+  close: {
+    pack: "fas",
+    icon: "search",
+  },
+  calendar: {
+    pack: "fas",
+    icon: "calendar-alt",
+  },
 };

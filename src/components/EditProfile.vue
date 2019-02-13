@@ -3,47 +3,47 @@
     <h1 class="is-size-5 has-text-weight-bold mb-3">Edytuj profil</h1>
 
     <div class="columns is-multiline">
-      <div class="column is-8-mobile is-4-tablet">
+      <div class="column is-4-tablet">
         <b-field label="E-mail:">
           <b-input type="email" v-model="user.email"></b-input>
         </b-field>
       </div>
-      <div class="column is-8-mobile is-4-tablet is-offset-1-tablet">
+      <div class="column is-4-tablet is-offset-1-tablet">
         <b-field label="Telefon:">
           <b-input v-model="user.phone"></b-input>
         </b-field>
       </div>
-      <div class="column is-8-mobile is-4-tablet">
+      <div class="column is-4-tablet">
         <b-field label="Hasło:">
           <b-input type="password" v-model="user.password"></b-input>
         </b-field>
       </div>
-      <div class="column is-8-mobile is-4-tablet is-offset-1-tablet">
+      <div class="column is-4-tablet is-offset-1-tablet">
         <b-field label="Powtórz hasło:">
           <b-input type="password" v-model="user.password2"></b-input>
         </b-field>
       </div>
-      <div class="column is-8-mobile is-4-tablet">
+      <div class="column is-4-tablet">
         <b-field label="Imię:">
           <b-input v-model="user.firstName"></b-input>
         </b-field>
       </div>
-      <div class="column is-8-mobile is-4-tablet is-offset-1-tablet">
+      <div class="column is-4-tablet is-offset-1-tablet">
         <b-field label="Nazwisko:">
           <b-input v-model="user.lastName"></b-input>
         </b-field>
       </div>
-      <div class="column is-8-mobile is-4-tablet">
+      <div class="column is-4-tablet">
         <b-field label="Adres:">
           <b-input v-model="user.street"></b-input>
         </b-field>
       </div>
-      <div class="column is-8-mobile is-4-tablet is-offset-1-tablet">
+      <div class="column is-4-tablet is-offset-1-tablet">
         <b-field label="Miasto:">
           <b-input v-model="user.city"></b-input>
         </b-field>
       </div>
-      <div class="column is-6-mobile is-4-tablet">
+      <div class="column is-4-tablet">
         <b-field label="Kod pocztowy:">
           <b-input v-model="user.code"></b-input>
         </b-field>
@@ -57,6 +57,7 @@
 
 <script>
 export default {
+  name: "edytuj",
   data() {
     return {
       user: {

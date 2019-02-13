@@ -55,21 +55,14 @@
 <script>
 import { icons } from "@/plugins/icons.js";
 export default {
+  name: "mynavbar",
   data() {
     return {
       icons: icons
     };
   },
-  beforeMount() {
-  },
-  mounted() {
-    this.getNavHeight();
-  },
-  methods: {
-    getNavHeight() {
-      const navHeight = this.$refs.navi.getBoundingClientRect().height;
-      return navHeight;
-    }
-  }
+  beforeMount() {},
+  mounted() {},
+  methods: {}
 };
 </script>

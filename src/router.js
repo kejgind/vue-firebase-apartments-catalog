@@ -6,6 +6,8 @@ import Register from "./components/Register.vue";
 import Contact from "./components/Contact.vue";
 import OfferView from "./views/OfferView.vue";
 import Dashboard from "./views/Dashboard.vue";
+import ErrorView from "./views/ErrorView.vue";
+import SearchView from "./views/SearchView.vue";
 import MyOffers from "./components/MyOffers.vue";
 import AddOffer from "./components/AddOffer.vue";
 import EditProfile from "./components/EditProfile.vue";
@@ -64,6 +66,20 @@ export default new Router({
       path: "/kontakt",
       name: "kontakt",
       component: Contact,
+    },
+    {
+      path: '/szukaj',
+      name: 'szukaj',
+      component: SearchView
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: ErrorView,
+    },
+    {
+      path: '/*',
+      redirect: '/404'
     },
   ],
 });

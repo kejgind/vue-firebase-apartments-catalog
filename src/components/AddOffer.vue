@@ -22,7 +22,7 @@
     <!-- Adres -->
     <h2 class="has-text-weight-semibold mb-2">Adres:</h2>
     <div class="columns is-size-6">
-      <div class="column is-12-mobile is-4-tablet">
+      <div class="column is-4-tablet">
         <b-field type message>
           <b-input
             v-model="offer.address.street"
@@ -32,12 +32,12 @@
           ></b-input>
         </b-field>
       </div>
-      <div class="column is-12-mobile is-4-tablet">
+      <div class="column is-4-tablet">
         <b-field type message>
           <b-input v-model="offer.address.city" aria-label="Miejscowość" placeholder="Miejscowość"></b-input>
         </b-field>
       </div>
-      <div class="column is-12-mobile is-2-tablet">
+      <div class="column is-2-tablet">
         <b-field type message>
           <b-input
             v-model="offer.address.code"
@@ -51,12 +51,12 @@
     <!-- Cena -->
     <h2 class="has-text-weight-semibold mb-2">Cena i dostępność:</h2>
     <div class="columns is-size-6">
-      <div class="column is-12-mobile is-2-tablet">
+      <div class="column is-2-tablet">
         <b-field type message>
           <b-input v-model="offer.price" aria-label="Cena" placeholder="Cena"></b-input>
         </b-field>
       </div>
-      <div class="column is-12-mobile is-2-tablet">
+      <div class="column is-2-tablet">
         <b-field type message>
           <b-datepicker placeholder="Wybierz datę" :min-date="new Date()" v-model="offer.dateFrom"></b-datepicker>
         </b-field>
@@ -66,7 +66,7 @@
     <!-- Info mieszkanie -->
     <h2 class="has-text-weight-semibold mb-2">Informacje o mieszkaniu:</h2>
     <div class="columns is-size-6">
-      <div class="column is-12-mobile is-3-tablet">
+      <div class="column is-3-tablet">
         <b-field type message>
           <b-input
             v-model="offer.aptInfo.roomCount"
@@ -75,7 +75,7 @@
           ></b-input>
         </b-field>
       </div>
-      <div class="column is-12-mobile is-3-tablet">
+      <div class="column is-3-tablet">
         <b-field type message>
           <b-input
             v-model="offer.aptInfo.livArea"
@@ -84,12 +84,12 @@
           ></b-input>
         </b-field>
       </div>
-      <div class="column is-12-mobile is-3-tablet">
+      <div class="column is-3-tablet">
         <b-field type message>
           <b-input v-model="offer.aptInfo.floorNo" aria-label="Piętro" placeholder="Piętro"></b-input>
         </b-field>
       </div>
-      <div class="column is-12-mobile is-3-tablet">
+      <div class="column is-3-tablet">
         <b-field type message>
           <b-input
             v-model="offer.aptInfo.buildYear"
@@ -121,6 +121,7 @@
 
 <script>
 export default {
+  name: "dodaj",
   data() {
     return {
       offer: {

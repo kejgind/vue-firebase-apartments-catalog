@@ -1,6 +1,6 @@
 <template>
   <footer ref="footer">
-    <div class="has-background-grey-darker py-4" style="margin-bottom: 0;">
+    <div class="has-background-grey-darker py-4 responsive__wrap" style="margin-bottom: 0;">
       <div class="container">
         <div class="columns is-tablet">
           <div class="column is-4-tablet is-3-desktop has-text-centered">
@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="column">
-            <div class="content is-flex-tablet foot-nav is-size-7">
+            <div class="content is-flex-tablet footer__nav is-size-7">
               <router-link
                 class="has-text-weight-normal has-text-white is-block-mobile has-text-centered pa-2"
                 to="/login"
@@ -64,6 +64,7 @@
 import { icons } from "@/plugins/icons.js";
 
 export default {
+  name: "myfooter",
   data() {
     return {
       icons: icons
@@ -83,8 +84,10 @@ export default {
 
 
 <style lang="scss">
-.foot-nav {
-  justify-content: flex-end;
+.footer {
+  &__nav {
+    justify-content: flex-end;
+  }
 }
 </style>
 

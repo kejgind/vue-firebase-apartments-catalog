@@ -62,3 +62,14 @@
     margin-right: #{$value};
   }
 }
+
+.responsive__wrap {
+  @media screen and (min-width: 769px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media screen and (min-width: 1088px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
