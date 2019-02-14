@@ -8,9 +8,7 @@
             <img :src="getImgUrl(offer.img.src)" :alt="offer.img.alt">
           </figure>
         </div>
-        <div
-          class="column is-offset-1-tablet is-5-tablet has-text-weight-semibold is-size-6"
-        >
+        <div class="column is-offset-1-tablet is-5-tablet has-text-weight-semibold is-size-6">
           <p class="mb-2">
             adres:
             <span
@@ -33,9 +31,13 @@
             rok budowy:
             <span class="has-text-weight-normal">{{offer.aptInfo.buildYear}}</span>
           </p>
-          <p>
+          <p class="mb-2">
             cena:
-            <span class="has-text-weight-normal">{{offer.price}} PLN</span>
+            <span class="has-text-weight-normal">{{offer.price | formatPrice}}</span>
+          </p>
+          <p>
+            dostępne od:
+            <span class="has-text-weight-normal">{{offer.dateFrom | formatDate}}</span>
           </p>
         </div>
       </div>
@@ -44,8 +46,8 @@
       <div class="level is-mobile mt-4">
         <div class="level-left">
           <div class="level-item">
-            <p class="has-text-weight-bold">url:
-              <router-link to="/oferta" class="has-text-weight-normal">{{offerURL}}</router-link>
+            <p class="has-text-weight-bold">Adres oferty:
+              <router-link :to="`/oferta/${offer.id}`" class="has-text-weight-normal">{{offerURL}}</router-link>
             </p>
           </div>
         </div>
@@ -75,33 +77,9 @@
 
 <script>
 export default {
+  props: ["id"],
   data() {
     return {
-      offer: {
-        userId: "",
-        id: "",
-        offertType: "Na wynajem",
-        address: {
-          street: "Sołtysa 74",
-          code: "01-234",
-          city: "Wrocław"
-        },
-        price: 387000,
-        dateFrom: null,
-        aptInfo: {
-          roomCount: 2,
-          livArea: 50,
-          floorNo: "1",
-          buildYear: "2010"
-        },
-        title: "Super wygodne 2 pokoje z wyposażeniem",
-        content:
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus temporibus odit corporis, impedit dolores nulla distinctio nostrum doloremque ipsum et, aliquam iure at fuga natus quo illo officia tempora modi quasi repudiandae reiciendis asperiores, dolore porro accusantium! Repudiandae non deleniti molestiae eligendi odit nulla, libero beatae, porro asperiores placeat ipsam?",
-        img: {
-          src: "img-01.jpeg",
-          alt: "nazwa"
-        }
-      },
       user: {
         email: "piotruspan@nibylandia.pl",
         phone: "123456789",
@@ -124,7 +102,14 @@ export default {
   },
   computed: {
     offerURL() {
-      return document.URL;
+      const baseURL = window.location.origin;
+      const additionURL = "/oferta/";
+      const offerId = this.id;
+
+      return baseURL + additionURL + offerId;
+    },
+    offer() {
+      return this.$store.getters.getSingleOffer(this.id);
     }
   }
 };

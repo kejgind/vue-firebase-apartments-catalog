@@ -1,17 +1,24 @@
 <template>
   <section class="section search-box">
     <h1 class="is-size-5 has-text-weight-bold mb-3">Znajdź idealne mieszkanie dla siebie już dziś!</h1>
-    <form class="has-background-warning">
+    <form class="has-background-warning" v-on:submit.prevent="searchApt">
       <b-field class="pa-3 has-background-light" grouped group-multiline>
-        <b-select placeholder="Oferta">
-          <option>Na sprzedaż</option>
-          <option>Na wynajem</option>
+        <b-select placeholder="Oferta" v-model="search.offerType">
+          <option value="na-sprzedaz">Na sprzedaż</option>
+          <option value="na-wynajem">Na wynajem</option>
         </b-select>
 
-        <b-input type="search" placeholder="np. miasto, ulica" :icon="icons.search.icon" expanded></b-input>
+        <b-input
+          type="search"
+          placeholder="podaj szukane miasto"
+          :icon="icons.search.icon"
+          expanded
+          v-model="search.query"
+          required
+        ></b-input>
 
         <p class="control">
-          <button class="button is-warning">Szukaj</button>
+          <button :disabled="!formIsValidated" class="button is-warning">Szukaj</button>
         </p>
       </b-field>
 
@@ -26,120 +33,168 @@
         <div class="card-content">
           <div class="columns is-multiline is-variable is-1 is-vcentered">
             <!-- Cena -->
-            <div class="column is-6-tablet">
+            <div class="column is-5-tablet">
               <h3 class="is-size-7 has-text-weight-semibold mb-2">Cena:</h3>
-              <b-field grouped group-multiline>
-                <b-input
-                  v-model="search.priceMin"
-                  aria-label="Cena minimalna"
-                  size="is-small"
-                  placeholder="od"
-                ></b-input>
-                <b-input
-                  v-model="search.priceMax"
-                  aria-label="Cena maksymalna"
-                  size="is-small"
-                  placeholder="do"
-                ></b-input>
-              </b-field>
+              <div class="is-flex inputs__group">
+                <b-field class="inputs__group__item">
+                  <b-input
+                    v-model="search.priceMin"
+                    aria-label="Cena minimalna"
+                    size="is-small"
+                    placeholder="od"
+                    type="number"
+                    min="0"
+                  ></b-input>
+                </b-field>
+                <b-field class="inputs__group__item">
+                  <b-input
+                    v-model="search.priceMax"
+                    aria-label="Cena maksymalna"
+                    size="is-small"
+                    placeholder="do"
+                    type="number"
+                    min="0"
+                  ></b-input>
+                </b-field>
+              </div>
             </div>
 
             <!-- Powierzchnia -->
-            <div class="column is-6-tablet">
+            <div class="column is-5-tablet is-offset-2-tablet">
               <h3 class="is-size-7 has-text-weight-semibold mb-2">Powierzchnia(m2):</h3>
-              <b-field grouped group-multiline>
-                <b-input
-                  v-model="search.livAreaMin"
-                  aria-label="Powierzchnia minimalna"
-                  size="is-small"
-                  placeholder="od"
-                ></b-input>
-                <b-input
-                  v-model="search.livAreaMax"
-                  aria-label="Powierzchnia maksymalna"
-                  size="is-small"
-                  placeholder="do"
-                ></b-input>
-              </b-field>
+              <div class="is-flex inputs__group">
+                <b-field class="inputs__group__item">
+                  <b-input
+                    v-model="search.livAreaMin"
+                    aria-label="Powierzchnia minimalna"
+                    size="is-small"
+                    placeholder="od"
+                    type="number"
+                    min="10"
+                  ></b-input>
+                </b-field>
+                <b-field class="inputs__group__item">
+                  <b-input
+                    v-model="search.livAreaMax"
+                    aria-label="Powierzchnia maksymalna"
+                    size="is-small"
+                    placeholder="do"
+                    type="number"
+                    min="10"
+                  ></b-input>
+                </b-field>
+              </div>
             </div>
           </div>
 
           <div class="columns is-multiline is-variable is-1 is-vcentered">
             <!-- Piętro -->
-            <div class="column is-6-tablet">
+            <div class="column is-5-tablet">
               <h3 class="is-size-7 has-text-weight-semibold mb-2">Piętro:</h3>
-              <b-field grouped group-multiline>
-                <b-input
-                  v-model="search.floorMin"
-                  aria-label="Piętro minimalne"
-                  size="is-small"
-                  placeholder="od"
-                ></b-input>
-                <b-input
-                  v-model="search.floorMax"
-                  aria-label="Piętro maksymalne"
-                  size="is-small"
-                  placeholder="do"
-                ></b-input>
-              </b-field>
+              <div class="is-flex inputs__group">
+                <b-field class="inputs__group__item">
+                  <b-input
+                    v-model="search.floorMin"
+                    aria-label="Piętro minimalne"
+                    size="is-small"
+                    placeholder="od"
+                    type="number"
+                    min="0"
+                    max="40"
+                  ></b-input>
+                </b-field>
+                <b-field class="inputs__group__item">
+                  <b-input
+                    v-model="search.floorMax"
+                    aria-label="Piętro maksymalne"
+                    size="is-small"
+                    placeholder="do"
+                    type="number"
+                    min="0"
+                    max="40"
+                  ></b-input>
+                </b-field>
+              </div>
             </div>
             <!-- Liczba pokoi -->
-            <div class="column is-6-tablet">
+            <div class="column is-5-tablet is-offset-2-tablet">
               <h3 class="is-size-7 has-text-weight-semibold mb-2">Ilość pokoi:</h3>
-              <b-field grouped group-multiline>
-                <b-input
-                  v-model="search.roomMin"
-                  aria-label="Minimalna ilość pokoi"
-                  size="is-small"
-                  placeholder="od"
-                ></b-input>
-                <b-input
-                  v-model="search.roomMax"
-                  aria-label="Maksymalna ilośc pokoi"
-                  size="is-small"
-                  placeholder="do"
-                ></b-input>
-              </b-field>
+              <div class="is-flex inputs__group">
+                <b-field class="inputs__group__item">
+                  <b-input
+                    v-model="search.roomMin"
+                    aria-label="Minimalna ilość pokoi"
+                    size="is-small"
+                    placeholder="od"
+                    type="number"
+                    min="1"
+                    max="15"
+                  ></b-input>
+                </b-field>
+                <b-field class="inputs__group__item">
+                  <b-input
+                    v-model="search.roomMax"
+                    aria-label="Maksymalna ilość pokoi"
+                    size="is-small"
+                    placeholder="do"
+                    type="number"
+                    min="1"
+                    max="15"
+                  ></b-input>
+                </b-field>
+              </div>
             </div>
           </div>
 
           <div class="columns is-multiline is-variable is-1 is-vcentered">
             <!-- Rok budowy -->
-            <div class="column is-6-tablet">
+            <div class="column is-5-tablet">
               <h3 class="is-size-7 has-text-weight-semibold mb-2">Rok budowy:</h3>
-              <b-field grouped group-multiline>
-                <b-input
-                  v-model="search.buildMin"
-                  aria-label="Rok budowy minimalny"
-                  size="is-small"
-                  placeholder="od"
-                ></b-input>
-                <b-input
-                  v-model="search.buildMax"
-                  aria-label="Rok budowy maksymalny"
-                  size="is-small"
-                  placeholder="do"
-                ></b-input>
-              </b-field>
+              <div class="is-flex inputs__group">
+                <b-field class="inputs__group__item">
+                  <b-input
+                    v-model="search.buildMin"
+                    aria-label="Rok budowy minimalny"
+                    size="is-small"
+                    placeholder="od"
+                    type="number"
+                    min="1900"
+                    max="2019"
+                  ></b-input>
+                </b-field>
+                <b-field class="inputs__group__item">
+                  <b-input
+                    v-model="search.buildMax"
+                    aria-label="Rok budowy maksymalny"
+                    size="is-small"
+                    placeholder="do"
+                    type="number"
+                    min="1900"
+                    max="2019"
+                  ></b-input>
+                </b-field>
+              </div>
             </div>
             <!-- Dostępność -->
-            <div class="column is-6-tablet">
+            <div class="column is-5-tablet is-offset-2-tablet">
               <h3 class="is-size-7 has-text-weight-semibold mb-2">Dostępne od:</h3>
-              <b-field grouped>
-                <b-datepicker
-                  v-model="search.avDate"
-                  aria-label="Dostępne od:"
-                  size="is-small"
-                  placeholder="Dostępne od"
-                  :icon="icons.calendar.icon"
-                  :min-date="new Date()"
-                ></b-datepicker>
-              </b-field>
+              <div class="is-flex inputs__group">
+                <b-field class="inputs__group__item">
+                  <b-datepicker
+                    v-model="search.avDate"
+                    aria-label="Dostępne od:"
+                    size="is-small"
+                    placeholder="Dostępne od"
+                    :icon="icons.calendar.icon"
+                    :min-date="new Date()"
+                  ></b-datepicker>
+                </b-field>
+              </div>
             </div>
           </div>
 
           <!-- Szukaj - przycisk -->
-          <button class="button is-warning">Szukaj</button>
+          <!-- <button class="button is-warning">Szukaj</button> -->
         </div>
       </b-collapse>
     </form>
@@ -154,6 +209,8 @@ export default {
     return {
       icons: icons,
       search: {
+        offerType: "",
+        query: "",
         priceMin: "",
         priceMax: "",
         livAreaMin: "",
@@ -164,9 +221,62 @@ export default {
         roomMax: "",
         buildMin: "",
         buildMax: "",
-        avDate: null
+        avDate: new Date(),
       }
     };
+  },
+  methods: {
+    searchApt() {
+      if (this.search.offerType && this.search.query) {
+        this.$store.commit("searchApt", this.search);
+        if (this.$router.history.current.path !== "/szukaj") {
+          this.$router.push("/szukaj");
+        }
+      }
+    }
+  },
+  computed: {
+    formIsValidated() {
+      if (this.search.offerType === "" || this.search.query === "") {
+        return false;
+      }
+      if (
+        this.search.priceMin !== "" &&
+        this.search.priceMax !== "" &&
+        this.search.priceMin > this.search.priceMax
+      ) {
+        return false;
+      }
+      if (
+        this.search.livAreaMin !== "" &&
+        this.search.livAreaMax !== "" &&
+        this.search.livAreaMin > this.search.livAreaMax
+      ) {
+        return false;
+      }
+      if (
+        this.search.floorMin !== "" &&
+        this.search.floorMax !== "" &&
+        this.search.floorMin > this.search.floorMax
+      ) {
+        return false;
+      }
+      if (
+        this.search.roomMin !== "" &&
+        this.search.roomMax !== "" &&
+        this.search.roomMin > this.search.roomMax
+      ) {
+        return false;
+      }
+      if (
+        this.search.buildMin !== "" &&
+        this.search.buildMax !== "" &&
+        this.search.buildMin > this.search.buildMax
+      ) {
+        return false;
+      }
+      return true;
+    }
   }
 };
 </script>
@@ -174,5 +284,13 @@ export default {
 <style lang="scss" scoped>
 .card {
   margin-top: -0.75rem;
+}
+.inputs__group {
+  justify-content: space-between;
+  align-items: flex-start;
+
+  &__item {
+    width: 48%;
+  }
 }
 </style>

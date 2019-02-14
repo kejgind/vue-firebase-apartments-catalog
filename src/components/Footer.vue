@@ -70,15 +70,8 @@ export default {
       icons: icons
     };
   },
-  mounted() {
-    this.getFootHeight();
-  },
-  methods: {
-    getFootHeight() {
-      const footHeight = this.$refs.footer.getBoundingClientRect().height;
-      return footHeight;
-    }
-  }
+  mounted() {},
+  methods: {}
 };
 </script>
 

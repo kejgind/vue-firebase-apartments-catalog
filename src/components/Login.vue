@@ -2,14 +2,23 @@
   <section class="login section is-medium">
     <div class="container">
       <h1 class="has-text-centered has-text-weight-semibold is-size-4 mb-4">Logowanie</h1>
-      <form class="small-form mx-auto">
+      <form class="small-form mx-auto" @submit.prevent="loginUser">
         <b-field label="E-mail:">
-          <b-input v-model="email" type="email" placeholder="jan.kowalski@email.pl"></b-input>
+          <b-input
+            type="email"
+            required
+            v-model="email"
+            name="email"
+            placeholder="jan.kowalski@email.pl"
+          ></b-input>
         </b-field>
         <b-field label="Hasło:">
-          <b-input v-model="password" type="password"></b-input>
+          <b-input minlength="8" required v-model="password" type="password" name="password"></b-input>
         </b-field>
-        <button @click="loginUser" class="mt-4 button is-fullwidth is-warning has-text-weight-semibold">Zaloguj</button>
+        <button
+          class="mt-4 button is-fullwidth is-warning has-text-weight-semibold"
+          :disabled="!formIsValid"
+        >Zaloguj</button>
       </form>
     </div>
   </section>
@@ -18,6 +27,22 @@
 <script>
 export default {
   name: "login",
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    loginUser() {
+      //
+    }
+  },
+  computed: {
+    formIsValid() {
+      return this.email !== "" && this.password.length >= 8;
+    }
+  }
 };
 </script>
 

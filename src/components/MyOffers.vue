@@ -18,13 +18,20 @@
               {{offer.address.street}}, {{offer.address.code}} {{offer.address.city}}
             </p>
             <p class="mb-3">
-              <span class="has-text-weight-semibold">Cena sprzedaży:</span>
-              {{offer.price}} PLN
+              <span
+                v-if="offer.offerType === 'Na sprzedaż'"
+                class="has-text-weight-semibold"
+              >Cena sprzedaży:</span>
+              <span
+                v-if="offer.offerType === 'Na wynajem'"
+                class="has-text-weight-semibold"
+              >Cena wynajmu:</span>
+              {{offer.price | formatPrice}}
             </p>
             <div class="buttons">
               <button class="button is-danger is-small" to="/panel/ogloszenia">Usuń</button>
               <router-link class="button is-warning is-small" to="/panel/edytuj">Edytuj</router-link>
-              <router-link class="button is-info is-small" to="/oferta">Zobacz</router-link>
+              <router-link class="button is-info is-small" :to="`ogloszenia/${offer.id}`">Zobacz</router-link>
             </div>
           </div>
         </article>
@@ -37,84 +44,16 @@
 export default {
   name: "ogloszenia",
   data() {
-    return {
-      offers: [
-        {
-          id: 1,
-          title: "Przylesie 4 pokoje z wyposażeniem po remoncie",
-          img: {
-            src: "img-01.jpeg",
-            alt: "nazwa"
-          },
-          address: {
-            street: "Sołtysa 74",
-            code: "01-234",
-            city: "Wrocław"
-          },
-          price: 520000
-        },
-        {
-          id: 2,
-          title: "Super wygodne 2 pokoje z wyposażeniem",
-          img: {
-            src: "img-02.jpeg",
-            alt: "nazwa"
-          },
-          address: {
-            street: "Warga 7",
-            code: "01-234",
-            city: "Wrocław"
-          },
-          price: 360000
-        },
-        {
-          id: 3,
-          title: "Super wygodne 2 pokoje z wyposażeniem",
-          img: {
-            src: "img-03.jpeg",
-            alt: "nazwa"
-          },
-          address: {
-            street: "Warga 7",
-            code: "01-234",
-            city: "Wrocław"
-          },
-          price: 360000
-        },
-        {
-          id: 4,
-          title: "Super wygodne 2 pokoje z wyposażeniem",
-          img: {
-            src: "img-04.jpeg",
-            alt: "nazwa"
-          },
-          address: {
-            street: "Warga 7",
-            code: "01-234",
-            city: "Wrocław"
-          },
-          price: 360000
-        },
-        {
-          id: 5,
-          title: "Super wygodne 2 pokoje z wyposażeniem",
-          img: {
-            src: "img-05.jpeg",
-            alt: "nazwa"
-          },
-          address: {
-            street: "Warga 7",
-            code: "01-234",
-            city: "Wrocław"
-          },
-          price: 360000
-        }
-      ]
-    };
+    return {};
   },
   methods: {
     getImgUrl(pic) {
       return require("../assets/img/" + pic);
+    }
+  },
+  computed: {
+    offers() {
+      return this.$store.state.offers;
     }
   }
 };

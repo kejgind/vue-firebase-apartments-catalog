@@ -12,7 +12,6 @@ import MyOffers from "./components/MyOffers.vue";
 import AddOffer from "./components/AddOffer.vue";
 import EditProfile from "./components/EditProfile.vue";
 
-
 Vue.use(Router);
 
 export default new Router({
@@ -40,26 +39,32 @@ export default new Router({
       component: Dashboard,
       children: [
         {
-          path:"ogloszenia",
+          path: "ogloszenia",
           component: MyOffers,
         },
         {
-          path:"dodaj",
+          path: "ogloszenia/:id",
+          props: true,
+          component: OfferView,
+        },
+        {
+          path: "dodaj",
           component: AddOffer,
         },
         {
-          path:"edytuj",
+          path: "edytuj",
           component: AddOffer,
         },
         {
-          path:"dane",
+          path: "dane",
           component: EditProfile,
         },
-      ]
+      ],
     },
     {
-      path: "/oferta",
+      path: "/oferta/:id",
       name: "oferta",
+      props: true,
       component: OfferView,
     },
     {
@@ -68,18 +73,18 @@ export default new Router({
       component: Contact,
     },
     {
-      path: '/szukaj',
-      name: 'szukaj',
-      component: SearchView
+      path: "/szukaj",
+      name: "szukaj",
+      component: SearchView,
     },
     {
-      path: '/404',
-      name: '404',
+      path: "/404",
+      name: "errorPage",
       component: ErrorView,
     },
-    {
-      path: '/*',
-      redirect: '/404'
-    },
+    // {
+    //   path: '/*',
+    //   redirect: '/404'
+    // },
   ],
 });
