@@ -20,27 +20,6 @@
             <div class="content is-flex-tablet footer__nav is-size-7">
               <router-link
                 class="has-text-weight-normal has-text-white is-block-mobile has-text-centered pa-2"
-                to="/login"
-              >
-                <b-icon :pack="icons.login.pack" :icon="icons.login.icon" type="is-warning"></b-icon>
-                <span class="px-1">Logowanie</span>
-              </router-link>
-              <router-link
-                class="has-text-weight-normal has-text-white is-block-mobile has-text-centered pa-2"
-                to="/register"
-              >
-                <b-icon :pack="icons.register.pack" :icon="icons.register.icon" type="is-warning"></b-icon>
-                <span class="px-1">Rejestracja</span>
-              </router-link>
-              <router-link
-                class="has-text-weight-normal has-text-white is-block-mobile has-text-centered pa-2"
-                to="/panel/dodaj"
-              >
-                <b-icon :pack="icons.add.pack" :icon="icons.add.icon" type="is-warning"></b-icon>
-                <span class="px-1">Dodaj ogłoszenie</span>
-              </router-link>
-              <router-link
-                class="has-text-weight-normal has-text-white is-block-mobile has-text-centered pa-2"
                 to="/kontakt"
               >
                 <b-icon :pack="icons.contact.pack" :icon="icons.contact.icon" type="is-warning"></b-icon>
@@ -69,9 +48,7 @@ export default {
     return {
       icons: icons
     };
-  },
-  mounted() {},
-  methods: {}
+  }
 };
 </script>
 

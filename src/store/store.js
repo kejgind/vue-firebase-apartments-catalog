@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { db, auth } from "../fb/fbInit";
 
 Vue.use(Vuex);
 
@@ -178,6 +179,9 @@ export default new Vuex.Store({
       buildMax: "",
       avDate: new Date(),
     },
+    user: null,
+    loading: false,
+    error: null,
   },
   getters: {
     getAllOffers: state => {
@@ -274,6 +278,16 @@ export default new Vuex.Store({
         });
       };
     },
+
+    user: state => {
+      return state.user;
+    },
+    loading(state) {
+      return state.loading;
+    },
+    error(state) {
+      return state.error;
+    },
   },
   mutations: {
     searchApt: (state, payload) => {
@@ -281,6 +295,18 @@ export default new Vuex.Store({
     },
     addNewOffer: (state, payload) => {
       state.offers.push(payload);
+    },
+    setUser(state, payload) {
+      state.user = payload;
+    },
+    setLoading(state, payload) {
+      state.loading = payload;
+    },
+    setError(state, payload) {
+      state.error = payload;
+    },
+    clearError(state) {
+      state.error = null;
     },
   },
   actions: {
@@ -310,6 +336,45 @@ export default new Vuex.Store({
         id: "123",
       };
       commit("addNewOffer", offer);
+    },
+    registerUser: ({ commit }, payload) => {
+      commit("setLoading", true);
+      commit("clearError");
+      auth
+        .createUserWithEmailAndPassword(payload.email, payload.password)
+        .then(data => {
+          commit("setLoading", false);
+          const newUser = {
+            id: data.user.uid,
+            createdOffers: [],
+          };
+          commit("setUser", newUser);
+        })
+        .catch(error => {
+          commit("setLoading", false);
+          commit("setError", error);
+        });
+    },
+    loginUser: ({ commit }, payload) => {
+      commit("setLoading", true);
+      commit("clearError");
+      auth
+        .signInWithEmailAndPassword(payload.email, payload.password)
+        .then(data => {
+          commit("setLoading", false);
+          const newUser = {
+            id: data.user.uid,
+            createdOffers: [],
+          };
+          commit("setUser", newUser);
+        })
+        .catch(error => {
+          commit("setLoading", false);
+          commit("setError", error);
+        });
+    },
+    clearError: ({ commit }) => {
+      commit("clearError");
     },
   },
 });

@@ -1,13 +1,8 @@
 <template>
-  <nav
-    class="navbar has-background-grey-darker"
-    role="navigation"
-    aria-label="main navigation"
-    ref="navi"
-  >
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation" ref="navi">
     <div class="container">
-      <div class="navbar-brand py-1 is-size-5">
-        <router-link class="navbar-item has-text-weight-semibold has-text-white" to="/">
+      <div class="navbar-brand is-size-5">
+        <router-link class="navbar-item has-text-weight-semibold" to="/">
           <b-icon
             :pack="icons.bolt.pack"
             :icon="icons.bolt.icon"
@@ -28,24 +23,17 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div class="navbar-menu" id="mainMenu">
+      <div class="navbar-menu is-size-7" id="mainMenu">
         <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="field is-grouped">
-              <p class="control">
-                <router-link class="button is-info" to="/panel/dane">
-                  <b-icon :pack="icons.user.pack" :icon="icons.user.icon"></b-icon>
-                  <span>User</span>
-                </router-link>
-              </p>
-              <p class="control">
-                <router-link class="button is-outlined is-warning" to="/panel/dodaj">
-                  <b-icon :pack="icons.add.pack" :icon="icons.add.icon"></b-icon>
-                  <span>Dodaj ogłoszenie</span>
-                </router-link>
-              </p>
-            </div>
-          </div>
+          <router-link
+            class="navbar-item"
+            v-for="item in menuItems"
+            :key="item.name"
+            :to="item.link"
+          >
+            <b-icon :pack="item.iPack" :icon="item.iName" type="is-warning"></b-icon>
+            <span class="px-1">{{item.name}}</span>
+          </router-link>
         </div>
       </div>
     </div>
@@ -61,8 +49,52 @@ export default {
       icons: icons
     };
   },
-  beforeMount() {},
-  mounted() {},
-  methods: {}
+  computed: {
+    menuItems() {
+      let menuItems = [
+        {
+          iPack: icons.login.pack,
+          iName: icons.login.icon,
+          link: "/login",
+          name: "Logowanie"
+        },
+        {
+          iPack: icons.register.pack,
+          iName: icons.register.icon,
+          link: "/register",
+          name: "Rejestracja"
+        }
+      ];
+      if (this.userIsAuthenticated) {
+        menuItems = [
+          {
+            iPack: icons.add.pack,
+            iName: icons.add.icon,
+            link: "/panel/dodaj",
+            name: "Dodaj ogłoszenie"
+          },
+          {
+            iPack: icons.user.pack,
+            iName: icons.user.icon,
+            link: "/panel/dane",
+            name: "Konto"
+          },
+          {
+            iPack: icons.logout.pack,
+            iName: icons.logout.icon,
+            link: "/",
+            name: "Wyloguj"
+          }
+        ];
+      }
+      return menuItems;
+    },
+    userIsAuthenticated() {
+      return (
+        this.$store.getters.user !== null &&
+        this.$store.getters.user !== undefined
+      );
+    }
+  }
 };
 </script>
