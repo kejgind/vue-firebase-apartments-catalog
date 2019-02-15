@@ -8,161 +8,161 @@ export default new Vuex.Store({
   strict: true,
   state: {
     offers: [
-      {
-        id: "1",
-        offerType: "na-wynajem",
-        address: {
-          street: "Sołtysa 74",
-          code: "01-234",
-          city: "Wrocław",
-        },
-        price: 387000,
-        dateFrom: new Date(),
-        aptInfo: {
-          roomCount: 2,
-          livArea: 50,
-          floorNo: "1",
-          buildYear: "2010",
-        },
-        title: "Super wygodne 2 pokoje z wyposażeniem",
-        content:
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus temporibus odit corporis, impedit dolores nulla distinctio nostrum doloremque ipsum et, aliquam iure at fuga natus quo illo officia tempora modi quasi repudiandae reiciendis asperiores, dolore porro accusantium! Repudiandae non deleniti molestiae eligendi odit nulla, libero beatae, porro asperiores placeat ipsam?",
-        img: {
-          src: "img-01.jpeg",
-          alt: "nazwa",
-        },
-        addDate: new Date(),
-        user: {
-          email: "",
-          phone: "",
-          firstName: "",
-          lastName: "",
-        },
-      },
-      {
-        id: "2",
-        offerType: "na-wynajem",
-        address: {
-          street: "Gilberta 23",
-          code: "01-234",
-          city: "Wrocław",
-        },
-        price: 500000,
-        dateFrom: new Date(),
-        aptInfo: {
-          roomCount: 3,
-          livArea: 75,
-          floorNo: "2",
-          buildYear: "2012",
-        },
-        title: "3 mega wyposażone pokoje",
-        content:
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus temporibus odit corporis, impedit dolores nulla distinctio nostrum doloremque ipsum et, aliquam iure at fuga natus quo illo officia tempora modi quasi repudiandae reiciendis asperiores, dolore porro accusantium! Repudiandae non deleniti molestiae eligendi odit nulla, libero beatae, porro asperiores placeat ipsam?",
-        img: {
-          src: "img-02.jpeg",
-          alt: "nazwa",
-        },
-        user: {
-          email: "",
-          phone: "",
-          firstName: "",
-          lastName: "",
-        },
-        addDate: new Date(),
-      },
-      {
-        id: "3",
-        offerType: "na-sprzedaz",
-        address: {
-          street: "Sołtysa 74",
-          code: "01-234",
-          city: "Wrocław",
-        },
-        price: 387000,
-        dateFrom: new Date(),
-        aptInfo: {
-          roomCount: 2,
-          livArea: 45,
-          floorNo: "3",
-          buildYear: "2009",
-        },
-        title: "Urządzone mieszkanie na sprzedaż",
-        content:
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus temporibus odit corporis, impedit dolores nulla distinctio nostrum doloremque ipsum et, aliquam iure at fuga natus quo illo officia tempora modi quasi repudiandae reiciendis asperiores, dolore porro accusantium! Repudiandae non deleniti molestiae eligendi odit nulla, libero beatae, porro asperiores placeat ipsam?",
-        img: {
-          src: "img-03.jpeg",
-          alt: "nazwa",
-        },
-        addDate: new Date(),
-        user: {
-          email: "",
-          phone: "",
-          firstName: "",
-          lastName: "",
-        },
-      },
-      {
-        id: "4",
-        offerType: "na-wynajem",
-        address: {
-          street: "Sołtysa 74",
-          code: "01-234",
-          city: "Kraków",
-        },
-        price: 387000,
-        dateFrom: new Date(),
-        aptInfo: {
-          roomCount: 2,
-          livArea: 50,
-          floorNo: "1",
-          buildYear: "2010",
-        },
-        title: "Super wygodne 2 pokoje z wyposażeniem",
-        content:
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus temporibus odit corporis, impedit dolores nulla distinctio nostrum doloremque ipsum et, aliquam iure at fuga natus quo illo officia tempora modi quasi repudiandae reiciendis asperiores, dolore porro accusantium! Repudiandae non deleniti molestiae eligendi odit nulla, libero beatae, porro asperiores placeat ipsam?",
-        img: {
-          src: "img-04.jpeg",
-          alt: "nazwa",
-        },
-        addDate: new Date(),
-        user: {
-          email: "",
-          phone: "",
-          firstName: "",
-          lastName: "",
-        },
-      },
-      {
-        id: "5",
-        offerType: "na-sprzedaz",
-        address: {
-          street: "Sołtysa 74",
-          code: "01-234",
-          city: "Kraków",
-        },
-        price: 350000,
-        dateFrom: new Date(),
-        aptInfo: {
-          roomCount: 4,
-          livArea: 65,
-          floorNo: "1",
-          buildYear: "2015",
-        },
-        title: "Super wygodne 2 pokoje z wyposażeniem",
-        content:
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus temporibus odit corporis, impedit dolores nulla distinctio nostrum doloremque ipsum et, aliquam iure at fuga natus quo illo officia tempora modi quasi repudiandae reiciendis asperiores, dolore porro accusantium! Repudiandae non deleniti molestiae eligendi odit nulla, libero beatae, porro asperiores placeat ipsam?",
-        img: {
-          src: "img-05.jpeg",
-          alt: "nazwa",
-        },
-        addDate: new Date(),
-        user: {
-          email: "",
-          phone: "",
-          firstName: "",
-          lastName: "",
-        },
-      },
+      // {
+      //   id: "1",
+      //   offerType: "na-wynajem",
+      //   address: {
+      //     street: "Sołtysa 74",
+      //     code: "01-234",
+      //     city: "Wrocław",
+      //   },
+      //   price: 387000,
+      //   dateFrom: new Date(),
+      //   aptInfo: {
+      //     roomCount: 2,
+      //     livArea: 50,
+      //     floorNo: "1",
+      //     buildYear: "2010",
+      //   },
+      //   title: "Super wygodne 2 pokoje z wyposażeniem",
+      //   content:
+      //     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus temporibus odit corporis, impedit dolores nulla distinctio nostrum doloremque ipsum et, aliquam iure at fuga natus quo illo officia tempora modi quasi repudiandae reiciendis asperiores, dolore porro accusantium! Repudiandae non deleniti molestiae eligendi odit nulla, libero beatae, porro asperiores placeat ipsam?",
+      //   img: {
+      //     src: "img-01.jpeg",
+      //     alt: "nazwa",
+      //   },
+      //   addDate: new Date(),
+      //   user: {
+      //     email: "",
+      //     phone: "",
+      //     firstName: "",
+      //     lastName: "",
+      //   },
+      // },
+      // {
+      //   id: "2",
+      //   offerType: "na-wynajem",
+      //   address: {
+      //     street: "Gilberta 23",
+      //     code: "01-234",
+      //     city: "Wrocław",
+      //   },
+      //   price: 500000,
+      //   dateFrom: new Date(),
+      //   aptInfo: {
+      //     roomCount: 3,
+      //     livArea: 75,
+      //     floorNo: "2",
+      //     buildYear: "2012",
+      //   },
+      //   title: "3 mega wyposażone pokoje",
+      //   content:
+      //     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus temporibus odit corporis, impedit dolores nulla distinctio nostrum doloremque ipsum et, aliquam iure at fuga natus quo illo officia tempora modi quasi repudiandae reiciendis asperiores, dolore porro accusantium! Repudiandae non deleniti molestiae eligendi odit nulla, libero beatae, porro asperiores placeat ipsam?",
+      //   img: {
+      //     src: "img-02.jpeg",
+      //     alt: "nazwa",
+      //   },
+      //   user: {
+      //     email: "",
+      //     phone: "",
+      //     firstName: "",
+      //     lastName: "",
+      //   },
+      //   addDate: new Date(),
+      // },
+      // {
+      //   id: "3",
+      //   offerType: "na-sprzedaz",
+      //   address: {
+      //     street: "Sołtysa 74",
+      //     code: "01-234",
+      //     city: "Wrocław",
+      //   },
+      //   price: 387000,
+      //   dateFrom: new Date(),
+      //   aptInfo: {
+      //     roomCount: 2,
+      //     livArea: 45,
+      //     floorNo: "3",
+      //     buildYear: "2009",
+      //   },
+      //   title: "Urządzone mieszkanie na sprzedaż",
+      //   content:
+      //     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus temporibus odit corporis, impedit dolores nulla distinctio nostrum doloremque ipsum et, aliquam iure at fuga natus quo illo officia tempora modi quasi repudiandae reiciendis asperiores, dolore porro accusantium! Repudiandae non deleniti molestiae eligendi odit nulla, libero beatae, porro asperiores placeat ipsam?",
+      //   img: {
+      //     src: "img-03.jpeg",
+      //     alt: "nazwa",
+      //   },
+      //   addDate: new Date(),
+      //   user: {
+      //     email: "",
+      //     phone: "",
+      //     firstName: "",
+      //     lastName: "",
+      //   },
+      // },
+      // {
+      //   id: "4",
+      //   offerType: "na-wynajem",
+      //   address: {
+      //     street: "Sołtysa 74",
+      //     code: "01-234",
+      //     city: "Kraków",
+      //   },
+      //   price: 387000,
+      //   dateFrom: new Date(),
+      //   aptInfo: {
+      //     roomCount: 2,
+      //     livArea: 50,
+      //     floorNo: "1",
+      //     buildYear: "2010",
+      //   },
+      //   title: "Super wygodne 2 pokoje z wyposażeniem",
+      //   content:
+      //     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus temporibus odit corporis, impedit dolores nulla distinctio nostrum doloremque ipsum et, aliquam iure at fuga natus quo illo officia tempora modi quasi repudiandae reiciendis asperiores, dolore porro accusantium! Repudiandae non deleniti molestiae eligendi odit nulla, libero beatae, porro asperiores placeat ipsam?",
+      //   img: {
+      //     src: "img-04.jpeg",
+      //     alt: "nazwa",
+      //   },
+      //   addDate: new Date(),
+      //   user: {
+      //     email: "",
+      //     phone: "",
+      //     firstName: "",
+      //     lastName: "",
+      //   },
+      // },
+      // {
+      //   id: "5",
+      //   offerType: "na-sprzedaz",
+      //   address: {
+      //     street: "Sołtysa 74",
+      //     code: "01-234",
+      //     city: "Kraków",
+      //   },
+      //   price: 350000,
+      //   dateFrom: new Date(),
+      //   aptInfo: {
+      //     roomCount: 4,
+      //     livArea: 65,
+      //     floorNo: "1",
+      //     buildYear: "2015",
+      //   },
+      //   title: "Super wygodne 2 pokoje z wyposażeniem",
+      //   content:
+      //     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus temporibus odit corporis, impedit dolores nulla distinctio nostrum doloremque ipsum et, aliquam iure at fuga natus quo illo officia tempora modi quasi repudiandae reiciendis asperiores, dolore porro accusantium! Repudiandae non deleniti molestiae eligendi odit nulla, libero beatae, porro asperiores placeat ipsam?",
+      //   img: {
+      //     src: "img-05.jpeg",
+      //     alt: "nazwa",
+      //   },
+      //   addDate: new Date(),
+      //   user: {
+      //     email: "",
+      //     phone: "",
+      //     firstName: "",
+      //     lastName: "",
+      //   },
+      // },
     ],
     search: {
       offerType: "",
@@ -308,8 +308,31 @@ export default new Vuex.Store({
     clearError(state) {
       state.error = null;
     },
+    setLoadedOffers: (state, payload) => {
+      state.offers = payload;
+    },
   },
   actions: {
+    loadOffers: ({ commit }) => {
+      commit("setLoading", true);
+      commit("clearError");
+      db.collection("mieszkania").onSnapshot(
+        snapshot => {
+          if (snapshot) {
+            const offers = [];
+            snapshot.forEach(doc => {
+              offers.push({ ...doc.data(), id: doc.id });
+            });
+            commit("setLoadedOffers", offers);
+            commit("setLoading", false);
+          }
+        },
+        error => {
+          commit("setLoading", false);
+          commit("setError", error);
+        }
+      );
+    },
     addNewOffer: ({ commit }, payload) => {
       const offer = {
         offerType: payload.offerType,
@@ -333,9 +356,17 @@ export default new Vuex.Store({
           src: payload.img.src,
           alt: payload.img.alt,
         },
-        id: "123",
       };
-      commit("addNewOffer", offer);
+      commit("clearError");
+      db.collection("mieszkania")
+        .add(offer)
+        .then(data => {
+          const key = data.id;
+          commit("addNewOffer", { ...offer, id: key });
+        })
+        .catch(error => {
+          commit("setError", error);
+        });
     },
     registerUser: ({ commit }, payload) => {
       commit("setLoading", true);

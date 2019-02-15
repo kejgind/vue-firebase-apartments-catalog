@@ -190,7 +190,7 @@ export default {
           city: ""
         },
         price: "",
-        dateFrom: "",
+        dateFrom: new Date(),
         aptInfo: {
           roomCount: "",
           livArea: "",
