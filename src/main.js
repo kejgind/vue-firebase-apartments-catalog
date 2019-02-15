@@ -1,8 +1,9 @@
 import Vue from "vue";
 import "./plugins/buefy";
 import App from "./App.vue";
-import router from "./router";
+import router from "./routes/router";
 import store from "./store/store";
+import { auth } from "./fb/fbInit";
 import { filters } from "./filters/filters.js";
 
 Vue.config.productionTip = false;
@@ -15,4 +16,11 @@ new Vue({
   router,
   store,
   render: h => h(App),
+  created() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.$store.dispatch("autoSignIn", user);
+      }
+    });
+  },
 }).$mount("#app");

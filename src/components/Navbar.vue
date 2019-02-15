@@ -34,6 +34,12 @@
             <b-icon :pack="item.iPack" :icon="item.iName" type="is-warning"></b-icon>
             <span class="px-1">{{item.name}}</span>
           </router-link>
+          <div class="navbar-item" v-if="userIsAuthenticated">
+            <button class="button is-warning is-small" @click.prevent="onLogout">
+              <b-icon :pack="icons.logout.pack" :icon="icons.logout.icon"></b-icon>
+              <span>Wyloguj</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -48,6 +54,12 @@ export default {
     return {
       icons: icons
     };
+  },
+  methods: {
+    onLogout() {
+      this.$store.dispatch("logoutUser");
+      this.$router.push({ name: "home" });
+    }
   },
   computed: {
     menuItems() {
@@ -78,13 +90,13 @@ export default {
             iName: icons.user.icon,
             link: "/panel/dane",
             name: "Konto"
-          },
-          {
-            iPack: icons.logout.pack,
-            iName: icons.logout.icon,
-            link: "/",
-            name: "Wyloguj"
           }
+          // {
+          //   iPack: icons.logout.pack,
+          //   iName: icons.logout.icon,
+          //   link: "/",
+          //   name: "Wyloguj"
+          // }
         ];
       }
       return menuItems;

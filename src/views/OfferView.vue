@@ -1,6 +1,7 @@
 <template>
   <section class="section">
-    <div class="container">
+    <b-loading :is-full-page="false" :active.sync="loading" :can-cancel="false"></b-loading>
+    <div class="container" v-if="!loading">
       <h1 class="is-size-5 has-text-weight-bold mt-4 mb-3">{{offer.title}}</h1>
       <div class="columns is-multiline">
         <div class="column is-6-tablet">
@@ -94,7 +95,11 @@ export default {
       contactModalShow: false
     };
   },
-  created() {},
+  created() {
+    if (this.$store.state.offers.length === 0) {
+      this.$store.dispatch("loadOffers");
+    }
+  },
   methods: {
     getImgUrl(pic) {
       return require("../assets/img/" + pic);
@@ -109,8 +114,17 @@ export default {
       return baseURL + additionURL + offerId;
     },
     offer() {
-      return this.$store.getters.getSingleOffer(this.id);
+      return this.$store.getters.filterSingleOffer(this.id);
+    },
+    loading() {
+      return this.$store.getters.loading;
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.section {
+  position: relative;
+}
+</style>

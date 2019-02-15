@@ -1,16 +1,17 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
-import Login from "./components/Login.vue";
-import Register from "./components/Register.vue";
-import Contact from "./components/Contact.vue";
-import OfferView from "./views/OfferView.vue";
-import Dashboard from "./views/Dashboard.vue";
-import ErrorView from "./views/ErrorView.vue";
-import SearchView from "./views/SearchView.vue";
-import MyOffers from "./components/MyOffers.vue";
-import AddOffer from "./components/AddOffer.vue";
-import EditProfile from "./components/EditProfile.vue";
+import Home from "../views/Home.vue";
+import Login from "../components/Login.vue";
+import Register from "../components/Register.vue";
+import Contact from "../components/Contact.vue";
+import OfferView from "../views/OfferView.vue";
+import Dashboard from "../views/Dashboard.vue";
+import ErrorView from "../views/ErrorView.vue";
+import SearchView from "../views/SearchView.vue";
+import MyOffers from "../components/MyOffers.vue";
+import AddOffer from "../components/AddOffer.vue";
+import EditProfile from "../components/EditProfile.vue";
+import AuthGuard from './auth-guard';
 
 Vue.use(Router);
 
@@ -37,6 +38,7 @@ export default new Router({
       path: "/panel",
       name: "panel",
       component: Dashboard,
+      beforeEnter: AuthGuard,
       children: [
         {
           path: "ogloszenia",
@@ -82,9 +84,9 @@ export default new Router({
       name: "errorPage",
       component: ErrorView,
     },
-    // {
-    //   path: '/*',
-    //   redirect: '/404'
-    // },
+    {
+      path: '/*',
+      redirect: '/404'
+    },
   ],
 });

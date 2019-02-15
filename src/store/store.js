@@ -182,6 +182,7 @@ export default new Vuex.Store({
     user: null,
     loading: false,
     error: null,
+    createdOffers: [],
   },
   getters: {
     getAllOffers: state => {
@@ -271,7 +272,7 @@ export default new Vuex.Store({
       }
     },
 
-    getSingleOffer: state => {
+    filterSingleOffer: state => {
       return offerId => {
         return state.offers.find(offer => {
           return offer.id === offerId;
@@ -333,7 +334,7 @@ export default new Vuex.Store({
         }
       );
     },
-    addNewOffer: ({ commit }, payload) => {
+    addNewOffer: ({ commit, getters }, payload) => {
       const offer = {
         offerType: payload.offerType,
         address: {
@@ -356,6 +357,7 @@ export default new Vuex.Store({
           src: payload.img.src,
           alt: payload.img.alt,
         },
+        userId: getters.user.id,
       };
       commit("clearError");
       db.collection("mieszkania")
@@ -403,6 +405,13 @@ export default new Vuex.Store({
           commit("setLoading", false);
           commit("setError", error);
         });
+    },
+    autoSignIn: ({ commit }, payload) => {
+      commit("setUser", { id: payload.uid, createdOffers: [] });
+    },
+    logoutUser: ({ commit }) => {
+      auth.signOut();
+      commit("setUser", null);
     },
     clearError: ({ commit }) => {
       commit("clearError");

@@ -168,7 +168,9 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch("loadOffers");
+    if (this.$store.state.offers.length === 0) {
+      this.$store.dispatch("loadOffers");
+    }
   },
   methods: {
     getImgUrl(pic) {
