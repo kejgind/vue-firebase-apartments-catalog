@@ -10,8 +10,9 @@ import ErrorView from "../views/ErrorView.vue";
 import SearchView from "../views/SearchView.vue";
 import MyOffers from "../components/MyOffers.vue";
 import AddOffer from "../components/AddOffer.vue";
+import EditOffer from "../components/EditOffer.vue";
 import EditProfile from "../components/EditProfile.vue";
-import AuthGuard from './auth-guard';
+import AuthGuard from "./auth-guard";
 
 Vue.use(Router);
 
@@ -43,23 +44,29 @@ export default new Router({
         {
           path: "ogloszenia",
           component: MyOffers,
+          beforeEnter: AuthGuard,
         },
         {
           path: "ogloszenia/:id",
           props: true,
           component: OfferView,
+          beforeEnter: AuthGuard,
         },
         {
           path: "dodaj",
           component: AddOffer,
+          beforeEnter: AuthGuard,
         },
         {
-          path: "edytuj",
-          component: AddOffer,
+          path: "edytuj/:id",
+          props: true,
+          component: EditOffer,
+          beforeEnter: AuthGuard,
         },
         {
           path: "dane",
           component: EditProfile,
+          beforeEnter: AuthGuard,
         },
       ],
     },
@@ -85,8 +92,8 @@ export default new Router({
       component: ErrorView,
     },
     {
-      path: '/*',
-      redirect: '/404'
+      path: "/*",
+      redirect: "/404",
     },
   ],
 });

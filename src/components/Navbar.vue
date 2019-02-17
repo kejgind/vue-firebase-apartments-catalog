@@ -57,8 +57,8 @@ export default {
   },
   methods: {
     onLogout() {
+      this.$router.push("/");
       this.$store.dispatch("logoutUser");
-      this.$router.push({ name: "home" });
     }
   },
   computed: {
@@ -91,12 +91,6 @@ export default {
             link: "/panel/dane",
             name: "Konto"
           }
-          // {
-          //   iPack: icons.logout.pack,
-          //   iName: icons.logout.icon,
-          //   link: "/",
-          //   name: "Wyloguj"
-          // }
         ];
       }
       return menuItems;

@@ -2,7 +2,9 @@
   <div id="app" class="is-flex">
     <Navbar/>
     <main class="main-content">
-      <router-view></router-view>
+      <transition name="fade" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </main>
     <Footer/>
   </div>
@@ -24,7 +26,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #app {
   min-height: 100vh;
   flex-direction: column;
@@ -32,5 +34,13 @@ export default {
 }
 .main-content {
   flex: 1;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

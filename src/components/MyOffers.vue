@@ -2,7 +2,11 @@
   <div class="my-offers">
     <h1 class="is-size-4 has-text-weight-semibold mb-4">Lista ogłoszeń</h1>
     <div class="columns is-multiline is-variable is-2">
-      <div class="column is-6-tablet is-4-widescreen mb-2" v-for="offer in offers" :key="offer.id">
+      <div
+        class="column is-6-tablet is-4-widescreen mb-2"
+        v-for="offer in userOffers"
+        :key="offer.id"
+      >
         <article class="card">
           <div class="card-image">
             <figure class="image is-16by9">
@@ -29,8 +33,11 @@
               {{offer.price | formatPrice}}
             </p>
             <div class="buttons">
-              <button class="button is-danger is-small" to="/panel/ogloszenia">Usuń</button>
-              <router-link class="button is-warning is-small" to="/panel/edytuj">Edytuj</router-link>
+              <button class="button is-danger is-small" @click="deleteOffer(offer.id)">Usuń</button>
+              <router-link
+                class="button is-warning is-small"
+                :to="`/panel/edytuj/${offer.id}`"
+              >Edytuj</router-link>
               <router-link class="button is-info is-small" :to="`ogloszenia/${offer.id}`">Zobacz</router-link>
             </div>
           </div>
@@ -46,14 +53,31 @@ export default {
   data() {
     return {};
   },
+  created() {
+    if (!this.$store.state.offers[0]) {
+      this.$store.dispatch("loadOffers");
+    }
+  },
   methods: {
     getImgUrl(pic) {
       return require("../assets/img/" + pic);
+    },
+    deleteOffer(id) {
+      return this.$store.dispatch("deleteOffer", id);
     }
   },
   computed: {
-    offers() {
-      return this.$store.state.offers;
+    userIsAuthenticated() {
+      return (
+        this.$store.getters.user !== null &&
+        this.$store.getters.user !== undefined
+      );
+    },
+    userOffers() {
+      if (!this.userIsAuthenticated) {
+        return false;
+      }
+      return this.$store.getters.filterUserCreatedOffers;
     }
   }
 };

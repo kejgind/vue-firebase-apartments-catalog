@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { db, auth } from "../fb/fbInit";
+import parse from "date-fns/parse";
 
 Vue.use(Vuex);
 
@@ -280,6 +281,29 @@ export default new Vuex.Store({
       };
     },
 
+    filterSaleOffers: state => {
+      const saleOffers = state.offers
+        .filter(offer => offer.offerType === "na-sprzedaz")
+        .slice(0, 5);
+      return saleOffers;
+    },
+
+    filterRentOffers: state => {
+      const rentOffers = state.offers
+        .filter(offer => offer.offerType === "na-wynajem")
+        .slice(0, 5);
+      return rentOffers;
+    },
+
+    filterUserCreatedOffers: state => {
+      if (
+        state.user !== null &&
+        (state.user.id !== null || state.user.id !== undefined)
+      ) {
+        return state.offers.filter(offer => offer.userId === state.user.id);
+      }
+    },
+
     user: state => {
       return state.user;
     },
@@ -294,9 +318,22 @@ export default new Vuex.Store({
     searchApt: (state, payload) => {
       Object.assign(state.search, payload);
     },
-    addNewOffer: (state, payload) => {
-      state.offers.push(payload);
-    },
+    // addNewOffer: (state, payload) => {
+    //   state.offers.push(payload);
+    // },
+    // updateOffer: (state, payload) => {
+    //   const offer = state.offers.find(offer => {
+    //     return offer.id === payload.id;
+    //   });
+    //   Object.assign(offer, payload);
+    // },
+    // deleteOffer: (state, payload) => {
+    //   const offerId = state.offers.find(offer => {
+    //     return offer.id === payload;
+    //   });
+    //   const offerIdx = state.offers.indexOf(offerId);
+    //   state.offers.splice(offerIdx, 1);
+    // },
     setUser(state, payload) {
       state.user = payload;
     },
@@ -312,6 +349,11 @@ export default new Vuex.Store({
     setLoadedOffers: (state, payload) => {
       state.offers = payload;
     },
+    changeDateFormat: state => {
+      state.offers.map(offer => {
+        return (offer.dateFrom = parse(offer.dateFrom));
+      });
+    },
   },
   actions: {
     loadOffers: ({ commit }) => {
@@ -325,6 +367,7 @@ export default new Vuex.Store({
               offers.push({ ...doc.data(), id: doc.id });
             });
             commit("setLoadedOffers", offers);
+            commit("changeDateFormat");
             commit("setLoading", false);
           }
         },
@@ -343,7 +386,7 @@ export default new Vuex.Store({
           city: payload.address.city,
         },
         price: payload.price,
-        dateFrom: payload.dateFrom,
+        dateFrom: payload.dateFrom.toISOString(),
         aptInfo: {
           roomCount: payload.aptInfo.roomCount,
           livArea: payload.aptInfo.livArea,
@@ -352,7 +395,6 @@ export default new Vuex.Store({
         },
         title: payload.title,
         content: payload.content,
-        addDate: payload.addDate,
         img: {
           src: payload.img.src,
           alt: payload.img.alt,
@@ -360,13 +402,64 @@ export default new Vuex.Store({
         userId: getters.user.id,
       };
       commit("clearError");
+      commit("setLoading", true);
       db.collection("mieszkania")
         .add(offer)
-        .then(data => {
-          const key = data.id;
-          commit("addNewOffer", { ...offer, id: key });
+        .then(() => {
+          commit("setLoading", false);
         })
         .catch(error => {
+          commit("setLoading", false);
+          commit("setError", error);
+        });
+    },
+    updateOffer: ({ commit }, payload) => {
+      const offer = {
+        offerType: payload.offerType,
+        address: {
+          street: payload.address.street,
+          code: payload.address.code,
+          city: payload.address.city,
+        },
+        price: payload.price,
+        dateFrom: payload.dateFrom.toISOString(),
+        aptInfo: {
+          roomCount: payload.aptInfo.roomCount,
+          livArea: payload.aptInfo.livArea,
+          floorNo: payload.aptInfo.floorNo,
+          buildYear: payload.aptInfo.buildYear,
+        },
+        title: payload.title,
+        content: payload.content,
+        img: {
+          src: payload.img.src,
+          alt: payload.img.alt,
+        },
+      };
+      commit("setLoading", true);
+      commit("clearError");
+      db.collection("mieszkania")
+        .doc(payload.id)
+        .update(offer)
+        .then(() => {
+          commit("setLoading", false);
+        })
+        .catch(error => {
+          commit("setLoading", false);
+          commit("setError", error);
+        });
+    },
+    deleteOffer: ({ commit }, payload) => {
+      commit("setLoading", true);
+      commit("clearError");
+      db.collection("mieszkania")
+        .doc(payload)
+        .delete()
+        .then(() => {
+          commit("setLoading", false);
+        })
+        .catch(error => {
+          commit("setLoading", false);
           commit("setError", error);
         });
     },

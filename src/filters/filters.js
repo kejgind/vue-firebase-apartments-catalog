@@ -17,7 +17,7 @@ export const filters = [
   {
     name: "formatDate",
     execute: value => {
-      const date = new Date(value.seconds * 1000);
+      const date = new Date(value);
       return new Intl.DateTimeFormat("pl-PL").format(date);
     },
   },

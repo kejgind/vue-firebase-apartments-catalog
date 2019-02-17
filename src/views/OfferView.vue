@@ -14,7 +14,7 @@
             adres:
             <span
               class="has-text-weight-normal"
-            >ul. {{offer.address.street}}, {{offer.address.code}} {{offer.address.city}}</span>
+            >{{offer.address.street}}, {{offer.address.code}} {{offer.address.city}}</span>
           </p>
           <p class="mb-2">
             liczba pokoi:
@@ -39,6 +39,7 @@
           <p>
             dostępne od:
             <span class="has-text-weight-normal">{{offer.dateFrom | formatDate}}</span>
+            <!-- <span class="has-text-weight-normal">{{offer.dateFrom | myDate}}</span> -->
           </p>
         </div>
       </div>
@@ -96,7 +97,7 @@ export default {
     };
   },
   created() {
-    if (this.$store.state.offers.length === 0) {
+    if (!this.$store.state.offers[0]) {
       this.$store.dispatch("loadOffers");
     }
   },

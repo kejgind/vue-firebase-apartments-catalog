@@ -62,113 +62,10 @@ export default {
   name: "home",
   components: { SearchBar },
   data() {
-    return {
-      // offers: [
-      //   {
-      //     id: 1,
-      //     title: "Przylesie 4 pokoje z wyposażeniem po remoncie",
-      //     img: {
-      //       src: "img-01.jpeg",
-      //       alt: "nazwa"
-      //     },
-      //     address: {
-      //       street: "Sołtysa 74",
-      //       code: "01-234",
-      //       city: "Wrocław"
-      //     },
-      //     price: 520000,
-      //     aptInfo: {
-      //       roomCount: 2,
-      //       livArea: 50,
-      //       floorNo: "1",
-      //       buildYear: "2010"
-      //     }
-      //   },
-      //   {
-      //     id: 2,
-      //     title: "Super wygodne 2 pokoje z wyposażeniem",
-      //     img: {
-      //       src: "img-02.jpeg",
-      //       alt: "nazwa"
-      //     },
-      //     address: {
-      //       street: "Warga 7",
-      //       code: "01-234",
-      //       city: "Wrocław"
-      //     },
-      //     price: 360000,
-      //     aptInfo: {
-      //       roomCount: 2,
-      //       livArea: 50,
-      //       floorNo: "1",
-      //       buildYear: "2010"
-      //     }
-      //   },
-      //   {
-      //     id: 3,
-      //     title: "Super wygodne 2 pokoje z wyposażeniem",
-      //     img: {
-      //       src: "img-03.jpeg",
-      //       alt: "nazwa"
-      //     },
-      //     address: {
-      //       street: "Warga 7",
-      //       code: "01-234",
-      //       city: "Wrocław"
-      //     },
-      //     price: 360000,
-      //     aptInfo: {
-      //       roomCount: 2,
-      //       livArea: 50,
-      //       floorNo: "1",
-      //       buildYear: "2010"
-      //     }
-      //   },
-      //   {
-      //     id: 4,
-      //     title: "Super wygodne 2 pokoje z wyposażeniem",
-      //     img: {
-      //       src: "img-04.jpeg",
-      //       alt: "nazwa"
-      //     },
-      //     address: {
-      //       street: "Warga 7",
-      //       code: "01-234",
-      //       city: "Wrocław"
-      //     },
-      //     price: 360000,
-      //     aptInfo: {
-      //       roomCount: 2,
-      //       livArea: 50,
-      //       floorNo: "1",
-      //       buildYear: "2010"
-      //     }
-      //   },
-      //   {
-      //     id: 5,
-      //     title: "Super wygodne 2 pokoje z wyposażeniem",
-      //     img: {
-      //       src: "img-05.jpeg",
-      //       alt: "nazwa"
-      //     },
-      //     address: {
-      //       street: "Warga 7",
-      //       code: "01-234",
-      //       city: "Wrocław"
-      //     },
-      //     price: 360000,
-      //     aptInfo: {
-      //       roomCount: 2,
-      //       livArea: 50,
-      //       floorNo: "1",
-      //       buildYear: "2010"
-      //     }
-      //   }
-      // ]
-    };
+    return {};
   },
   created() {
-    if (this.$store.state.offers.length === 0) {
+    if (!this.$store.state.offers[0]) {
       this.$store.dispatch("loadOffers");
     }
   },
@@ -179,16 +76,10 @@ export default {
   },
   computed: {
     saleOffers() {
-      const saleOffers = this.$store.state.offers
-        .filter(offer => offer.offerType === "na-sprzedaz")
-        .slice(0, 5);
-      return saleOffers;
+      return this.$store.getters.filterSaleOffers;
     },
     rentOffers() {
-      const rentOffers = this.$store.state.offers
-        .filter(offer => offer.offerType === "na-wynajem")
-        .slice(0, 5);
-      return rentOffers;
+      return this.$store.getters.filterRentOffers;
     },
     loading() {
       return this.$store.getters.loading;
