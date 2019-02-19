@@ -83,15 +83,13 @@ export default {
   data() {
     return {
       user: {
-        email: "piotruspan@nibylandia.pl",
-        phone: "123456789",
-        password: "",
-        password2: "",
-        firstName: "Piotruś",
-        lastName: "Pan",
-        street: "",
-        city: "",
-        code: ""
+        email: "fake@email.com",
+        phone: "+48 987 654 321",
+        firstName: "Jan",
+        lastName: "Kowalski",
+        street: "ul. Główna 1",
+        city: "Wrocław",
+        code: "54-456"
       },
       contactModalShow: false
     };

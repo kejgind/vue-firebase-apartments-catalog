@@ -2,6 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { db, auth } from "../fb/fbInit";
 import parse from "date-fns/parse";
+import router from "../routes/router";
+import { Toast } from "buefy/dist/components/toast";
 
 Vue.use(Vuex);
 
@@ -183,7 +185,6 @@ export default new Vuex.Store({
     user: null,
     loading: false,
     error: null,
-    createdOffers: [],
   },
   getters: {
     getAllOffers: state => {
@@ -407,6 +408,12 @@ export default new Vuex.Store({
         .add(offer)
         .then(() => {
           commit("setLoading", false);
+          router.push("/panel/ogloszenia");
+          Toast.open({
+            duration: 3000,
+            message: "Oferta została poprawnie dodana",
+            type: "is-success",
+          });
         })
         .catch(error => {
           commit("setLoading", false);
@@ -443,6 +450,12 @@ export default new Vuex.Store({
         .update(offer)
         .then(() => {
           commit("setLoading", false);
+          router.push("/panel/ogloszenia");
+          Toast.open({
+            duration: 3000,
+            message: "Twoja oferta została zaktualizowana.",
+            type: "is-success",
+          });
         })
         .catch(error => {
           commit("setLoading", false);
@@ -457,6 +470,11 @@ export default new Vuex.Store({
         .delete()
         .then(() => {
           commit("setLoading", false);
+          Toast.open({
+            duration: 3000,
+            message: "Oferta została usunięta.",
+            type: "is-danger",
+          });
         })
         .catch(error => {
           commit("setLoading", false);
@@ -472,7 +490,6 @@ export default new Vuex.Store({
           commit("setLoading", false);
           const newUser = {
             id: data.user.uid,
-            createdOffers: [],
           };
           commit("setUser", newUser);
         })
@@ -490,7 +507,6 @@ export default new Vuex.Store({
           commit("setLoading", false);
           const newUser = {
             id: data.user.uid,
-            createdOffers: [],
           };
           commit("setUser", newUser);
         })
@@ -500,9 +516,10 @@ export default new Vuex.Store({
         });
     },
     autoSignIn: ({ commit }, payload) => {
-      commit("setUser", { id: payload.uid, createdOffers: [] });
+      commit("setUser", { id: payload.uid });
     },
     logoutUser: ({ commit }) => {
+      router.push("/");
       auth.signOut();
       commit("setUser", null);
     },

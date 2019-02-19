@@ -57,8 +57,11 @@ export default {
   },
   methods: {
     onLogout() {
-      this.$router.push("/");
-      this.$store.dispatch("logoutUser");
+      this.$dialog.confirm({
+        message: "Czy na pewno chcesz się wylogować?",
+        cancelText: "Anuluj",
+        onConfirm: () => this.$store.dispatch("logoutUser")
+      });
     }
   },
   computed: {

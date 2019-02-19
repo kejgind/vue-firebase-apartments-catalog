@@ -211,12 +211,20 @@ export default {
       if (!this.formIsValid) {
         return;
       }
+      if (!this.userIsAuthenticated) {
+        return false;
+      }
 
       this.$store.dispatch("addNewOffer", this.offer);
-      this.$router.push("/panel/ogloszenia");
     }
   },
   computed: {
+    userIsAuthenticated() {
+      return (
+        this.$store.getters.user !== null &&
+        this.$store.getters.user !== undefined
+      );
+    },
     formIsValid() {
       return (
         this.offer.offerType !== "" &&

@@ -89,7 +89,7 @@ export default {
   watch: {
     user(value) {
       if (value !== null && value !== undefined) {
-        this.$router.push("/panel");
+        this.$router.push({ name: "ogloszenia" });
       }
     }
   }

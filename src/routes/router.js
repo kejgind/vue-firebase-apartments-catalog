@@ -40,9 +40,11 @@ export default new Router({
       name: "panel",
       component: Dashboard,
       beforeEnter: AuthGuard,
+      redirect: "/panel/ogloszenia",
       children: [
         {
           path: "ogloszenia",
+          name: "ogloszenia",
           component: MyOffers,
           beforeEnter: AuthGuard,
         },
@@ -54,6 +56,7 @@ export default new Router({
         },
         {
           path: "dodaj",
+          name: "dodaj",
           component: AddOffer,
           beforeEnter: AuthGuard,
         },
@@ -65,6 +68,7 @@ export default new Router({
         },
         {
           path: "dane",
+          name: "dane",
           component: EditProfile,
           beforeEnter: AuthGuard,
         },

@@ -63,7 +63,19 @@ export default {
       return require("../assets/img/" + pic);
     },
     deleteOffer(id) {
-      return this.$store.dispatch("deleteOffer", id);
+      if (!this.userIsAuthenticated) {
+        return false;
+      }
+      this.$dialog.confirm({
+        title: "Usunięcie oferty",
+        message:
+          "Jesteś pewien, że chcesz <b>usunąć</b> wybraną ofertę? Po usunięciu oferta ta nie będzie już dostępna.",
+        confirmText: "Usuń ofertę",
+        cancelText: "Anuluj",
+        type: "is-danger",
+        hasIcon: true,
+        onConfirm: () => this.$store.dispatch("deleteOffer", id)
+      });
     }
   },
   computed: {
