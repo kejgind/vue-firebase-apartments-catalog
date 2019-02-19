@@ -22,3 +22,6 @@ yarn-error.log*
 
 # Firebase/Firestore config
 /src/fb
+.firebaserc
+firebase.json
+/functions

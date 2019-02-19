@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { db, auth } from "../fb/fbInit";
+import { db, auth } from "../firebase/fbInit";
 import parse from "date-fns/parse";
 import router from "../routes/router";
 import { Toast } from "buefy/dist/components/toast";

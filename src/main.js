@@ -3,7 +3,7 @@ import "./plugins/buefy";
 import App from "./App.vue";
 import router from "./routes/router";
 import store from "./store/store";
-import { auth } from "./fb/fbInit";
+import { auth } from "./firebase/fbInit";
 import { filters } from "./filters/filters.js";
 
 Vue.config.productionTip = false;
