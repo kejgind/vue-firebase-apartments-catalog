@@ -51,4 +51,8 @@ export const icons = {
     pack: "fas",
     icon: "building",
   },
+  share: {
+    pack: "fas",
+    icon: "share-square",
+  },
 };

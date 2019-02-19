@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "@/components/Shared/SearchBar";
 export default {
   name: "home",
   components: { SearchBar },

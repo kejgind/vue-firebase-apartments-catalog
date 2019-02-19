@@ -39,7 +39,6 @@
           <p>
             dostępne od:
             <span class="has-text-weight-normal">{{offer.dateFrom | formatDate}}</span>
-            <!-- <span class="has-text-weight-normal">{{offer.dateFrom | myDate}}</span> -->
           </p>
         </div>
       </div>
@@ -48,9 +47,14 @@
       <div class="level is-mobile mt-4">
         <div class="level-left">
           <div class="level-item">
-            <p class="has-text-weight-bold">Adres oferty:
-              <router-link :to="`/oferta/${offer.id}`" class="has-text-weight-normal">{{offerURL}}</router-link>
-            </p>
+            <!-- <p class="has-text-weight-bold"> -->
+            <router-link
+              :to="`/oferta/${offer.id}`"
+              class="button has-text-weight-normal is-warning"
+            >
+              <b-icon :pack="icons.share.pack" :icon="icons.share.icon"></b-icon>
+            </router-link>
+            <!-- </p> -->
           </div>
         </div>
         <div class="level-right">
@@ -78,10 +82,12 @@
 </template>
 
 <script>
+import { icons } from "@/plugins/icons.js";
 export default {
   props: ["id"],
   data() {
     return {
+      icons: icons,
       user: {
         email: "fake@email.com",
         phone: "987 654 321",
@@ -101,7 +107,7 @@ export default {
   },
   methods: {
     getImgUrl(pic) {
-      return require("../assets/img/" + pic);
+      return require("../../assets/img/" + pic);
     }
   },
   computed: {

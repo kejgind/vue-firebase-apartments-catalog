@@ -11,24 +11,17 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/Layout/Navbar";
+import Footer from "@/components/Layout/Footer";
 export default {
   name: "App",
-  components: { Navbar, Footer },
-  data() {
-    return {
-      //
-    };
-  },
-  mounted: function() {},
-  methods: {}
+  components: { Navbar, Footer }
 };
 </script>
 
 <style lang="scss" scoped>
 #app {
-  min-height: calc(100vh - 1px);
+  min-height: 100vh;
   flex-direction: column;
   justify-content: space-between;
 }

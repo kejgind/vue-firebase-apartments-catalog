@@ -1,10 +1,10 @@
 import Vue from "vue";
 import "./plugins/buefy";
 import App from "./App.vue";
-import router from "./routes/router";
-import store from "./store/store";
-import { auth } from "./firebase/fbInit";
-import { filters } from "./filters/filters.js";
+import router from "@/routes/router";
+import store from "@/store";
+import { auth } from "@/firebase";
+import { filters } from "@/filters";
 
 Vue.config.productionTip = false;
 

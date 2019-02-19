@@ -1,17 +1,20 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "../components/Login.vue";
-import Register from "../components/Register.vue";
-import Contact from "../components/Contact.vue";
-import OfferView from "../views/OfferView.vue";
-import Dashboard from "../views/Dashboard.vue";
-import ErrorView from "../views/ErrorView.vue";
-import SearchView from "../views/SearchView.vue";
-import MyOffers from "../components/MyOffers.vue";
-import AddOffer from "../components/AddOffer.vue";
-import EditOffer from "../components/EditOffer.vue";
-import EditProfile from "../components/EditProfile.vue";
+
+import HomePage from "@/views/HomePage.vue";
+import ErrorPage from "@/views/ErrorPage.vue";
+import SearchPage from "@/views/SearchPage.vue";
+import ContactPage from "@/views/ContactPage.vue";
+import DashboardPage from "@/views/DashboardPage.vue";
+
+import Login from "@/components/UserAuth/Login.vue";
+import Register from "@/components/UserAuth/Register.vue";
+import MyOffers from "@/components/Dashboard/MyOffers.vue";
+import AddOffer from "@/components/Dashboard/AddOffer.vue";
+import EditOffer from "@/components/Dashboard/EditOffer.vue";
+import SingleOffer from "@/components/Shared/SingleOffer.vue";
+import EditProfile from "@/components/Dashboard/EditProfile.vue";
+
 import AuthGuard from "./auth-guard";
 
 Vue.use(Router);
@@ -23,7 +26,7 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home,
+      component: HomePage,
     },
     {
       path: "/login",
@@ -38,7 +41,7 @@ export default new Router({
     {
       path: "/panel",
       name: "panel",
-      component: Dashboard,
+      component: DashboardPage,
       beforeEnter: AuthGuard,
       redirect: "/panel/ogloszenia",
       children: [
@@ -51,7 +54,7 @@ export default new Router({
         {
           path: "ogloszenia/:id",
           props: true,
-          component: OfferView,
+          component: SingleOffer,
           beforeEnter: AuthGuard,
         },
         {
@@ -78,22 +81,22 @@ export default new Router({
       path: "/oferta/:id",
       name: "oferta",
       props: true,
-      component: OfferView,
+      component: SingleOffer,
     },
     {
       path: "/kontakt",
       name: "kontakt",
-      component: Contact,
+      component: ContactPage,
     },
     {
       path: "/szukaj",
       name: "szukaj",
-      component: SearchView,
+      component: SearchPage,
     },
     {
       path: "/404",
       name: "errorPage",
-      component: ErrorView,
+      component: ErrorPage,
     },
     {
       path: "/*",

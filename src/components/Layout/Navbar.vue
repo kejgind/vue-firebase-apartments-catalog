@@ -3,26 +3,23 @@
     <div class="container">
       <div class="navbar-brand is-size-5">
         <router-link class="navbar-item has-text-weight-semibold" to="/">
-          <b-icon
-            :pack="icons.building.pack"
-            :icon="icons.building.icon"
-            type="is-warning"
-          ></b-icon>
+          <b-icon :pack="icons.building.pack" :icon="icons.building.icon" type="is-warning"></b-icon>
           <span class="px-1">Stylowe mieszkania</span>
         </router-link>
         <a
           role="button"
           class="navbar-burger"
+          :class="{'is-active': menuIsOpen}"
           aria-label="menu"
-          aria-expanded="false"
-          data-target="mainMenu"
+          :aria-expanded="{menuIsOpen}"
+          @click.prevent="onBurgerClick"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div class="navbar-menu is-size-7" id="mainMenu">
+      <div class="navbar-menu is-size-7" :class="{'is-active': menuIsOpen}">
         <div class="navbar-end">
           <router-link
             class="navbar-item"
@@ -51,7 +48,8 @@ export default {
   name: "mynavbar",
   data() {
     return {
-      icons: icons
+      icons: icons,
+      menuIsOpen: false
     };
   },
   methods: {
@@ -62,6 +60,9 @@ export default {
         type: "is-warning",
         onConfirm: () => this.$store.dispatch("logoutUser")
       });
+    },
+    onBurgerClick() {
+      return (this.menuIsOpen = !this.menuIsOpen);
     }
   },
   computed: {

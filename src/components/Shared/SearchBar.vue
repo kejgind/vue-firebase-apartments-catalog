@@ -186,15 +186,11 @@
                     size="is-small"
                     placeholder="Dostępne od"
                     :icon="icons.calendar.icon"
-                    :min-date="new Date()"
                   ></b-datepicker>
                 </b-field>
               </div>
             </div>
           </div>
-
-          <!-- Szukaj - przycisk -->
-          <!-- <button class="button is-warning">Szukaj</button> -->
         </div>
       </b-collapse>
     </form>

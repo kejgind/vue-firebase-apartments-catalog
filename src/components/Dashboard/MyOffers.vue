@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     getImgUrl(pic) {
-      return require("../assets/img/" + pic);
+      return require("../../assets/img/" + pic);
     },
     deleteOffer(id) {
       if (!this.userIsAuthenticated) {

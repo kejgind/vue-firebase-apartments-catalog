@@ -1,3 +1,21 @@
-// body {
-//   font-family: 
-// }
+@font-face {
+  font-family: "Roboto Slab";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Roboto Slab Regular"), local("RobotoSlab-Regular"),
+    url(https://fonts.gstatic.com/s/robotoslab/v7/BngMUXZYTXPIvIBgJJSb6ufD5qM.woff)
+      format("woff");
+}
+
+@font-face {
+  font-family: "Roboto Slab";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Roboto Slab Bold"), local("RobotoSlab-Bold"),
+    url(https://fonts.gstatic.com/s/robotoslab/v7/BngRUXZYTXPIvIBgJJSb6u92w7CIwRs.woff)
+      format("woff");
+}
+
+$font-site: "Roboto Slab", "MS Serif", "New York", serif;

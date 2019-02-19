@@ -10,6 +10,7 @@
         >Powierzchnia</span>
         <span
           class="section__title--small section__title--price-m mr-4 px-2 is-size-7 has-text-grey-light is-hidden-mobile"
+          v-if="search.offerType === 'na-sprzedaz'"
         >Cena za 1m2</span>
         <span
           class="section__title--small section__title--price mr-4 px-2 is-size-7 has-text-grey-light is-hidden-mobile"
@@ -42,7 +43,7 @@
             <span class="is-hidden-tablet">Powierzchnia mieszkania:</span>
             {{offer.aptInfo.livArea}}m2
           </p>
-          <p class="has-text-weight-semibold has-text-grey-light my-1 offer__prices--two">
+          <p class="has-text-weight-semibold has-text-grey-light my-1 offer__prices--two" v-if="offer.offerType === 'na-sprzedaz'">
             <span class="is-hidden-tablet">Cena za 1m2:</span>
             {{unitPrice(offer.price, offer.aptInfo.livArea) | formatPrice}}
           </p>
@@ -57,7 +58,7 @@
 </template>
 
 <script>
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "@/components/Shared/SearchBar";
 export default {
   name: "szukaj",
   components: { SearchBar },
