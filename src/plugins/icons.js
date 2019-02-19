@@ -27,10 +27,6 @@ export const icons = {
     pack: "fas",
     icon: "envelope",
   },
-  bolt: {
-    pack: "fas",
-    icon: "bolt",
-  },
   user: {
     pack: "fas",
     icon: "user",
@@ -50,5 +46,9 @@ export const icons = {
   calendar: {
     pack: "fas",
     icon: "calendar-alt",
+  },
+  building: {
+    pack: "fas",
+    icon: "building",
   },
 };

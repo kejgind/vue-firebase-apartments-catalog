@@ -4,12 +4,11 @@
       <div class="navbar-brand is-size-5">
         <router-link class="navbar-item has-text-weight-semibold" to="/">
           <b-icon
-            :pack="icons.bolt.pack"
-            :icon="icons.bolt.icon"
+            :pack="icons.building.pack"
+            :icon="icons.building.icon"
             type="is-warning"
-            custom-class="mr-2"
           ></b-icon>
-          <span>Stylowe mieszkania</span>
+          <span class="px-1">Stylowe mieszkania</span>
         </router-link>
         <a
           role="button"
@@ -60,6 +59,7 @@ export default {
       this.$dialog.confirm({
         message: "Czy na pewno chcesz się wylogować?",
         cancelText: "Anuluj",
+        type: "is-warning",
         onConfirm: () => this.$store.dispatch("logoutUser")
       });
     }
@@ -91,7 +91,7 @@ export default {
           {
             iPack: icons.user.pack,
             iName: icons.user.icon,
-            link: "/panel/dane",
+            link: "/panel/ogloszenia",
             name: "Konto"
           }
         ];

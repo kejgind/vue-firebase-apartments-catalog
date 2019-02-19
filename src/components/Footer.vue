@@ -7,12 +7,11 @@
             <div class="content is-flex-tablet is-size-5">
               <router-link class="has-text-weight-semibold has-text-white py-2" to="/">
                 <b-icon
-                  :pack="icons.bolt.pack"
-                  :icon="icons.bolt.icon"
+                  :pack="icons.building.pack"
+                  :icon="icons.building.icon"
                   type="is-warning"
-                  custom-class="mr-2"
                 ></b-icon>
-                <span>Stylowe mieszkania</span>
+                <span class="px-1">Stylowe mieszkania</span>
               </router-link>
             </div>
           </div>

@@ -3,7 +3,7 @@
     <section class="section">
       <div class="columns is-multiline">
         <div class="column is-5-tablet">
-          <form>
+          <form @submit.prevent="onSubmit">
             <h1 class="is-size-5 has-text-weight-bold mb-3">Formularz kontaktowy</h1>
             <b-field label="Temat:">
               <b-input v-model="contact.topic"></b-input>
@@ -22,13 +22,12 @@
         </div>
         <div class="column is-offset-1-tablet is-5-tablet">
           <h2 class="is-size-5 has-text-weight-bold mb-3">Kontakt</h2>
+          <h3 class="has-text-weight-semibold mb-2">Firma:</h3>
+          <p class="mb-4">mediaKG Krzysztof Garbowski</p>
           <h3 class="has-text-weight-semibold mb-2">Telefon:</h3>
-          <p class="mb-4">+48 123 456 789</p>
+          <p class="mb-4">+48 609 610 136</p>
           <h3 class="has-text-weight-semibold mb-2">E-mail:</h3>
-          <p class="mb-4">kontakt@stylowemieszkania.pl</p>
-          <h3 class="has-text-weight-semibold mb-2">Adres:</h3>
-          <p>ul. Dowolna 12</p>
-          <p>12-345 Nibylandia</p>
+          <p class="mb-4">krzysztof.garbowski@mediakg.pl</p>
         </div>
       </div>
     </section>
@@ -47,6 +46,15 @@ export default {
         message: ""
       }
     };
+  },
+  methods: {
+    onSubmit() {
+      this.$dialog.alert({
+        title: 'Kontakt z firmą',
+        message: "Wysyłanie wiadomości za pomocą formularza nie jest dostępne. Do kontaktu proszę użyć danych zawartych obok.",
+        type: "is-warning"
+      });
+    }
   }
 };
 </script>

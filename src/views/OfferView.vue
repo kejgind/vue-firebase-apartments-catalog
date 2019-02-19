@@ -84,7 +84,7 @@ export default {
     return {
       user: {
         email: "fake@email.com",
-        phone: "+48 987 654 321",
+        phone: "987 654 321",
         firstName: "Jan",
         lastName: "Kowalski",
         street: "ul. Główna 1",

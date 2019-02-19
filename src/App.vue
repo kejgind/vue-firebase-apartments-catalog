@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 #app {
-  min-height: 100vh;
+  min-height: calc(100vh - 1px);
   flex-direction: column;
   justify-content: space-between;
 }

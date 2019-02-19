@@ -484,13 +484,27 @@ export default new Vuex.Store({
     registerUser: ({ commit }, payload) => {
       commit("setLoading", true);
       commit("clearError");
+      let newUser;
       auth
         .createUserWithEmailAndPassword(payload.email, payload.password)
         .then(data => {
-          commit("setLoading", false);
-          const newUser = {
+          newUser = {
             id: data.user.uid,
+            email: data.user.email,
+            firstName: "",
+            lastName: "",
+            phone: "",
+            street: "",
+            city: "",
+            code: "",
           };
+          return db
+            .collection("uzytkownicy")
+            .doc(data.user.uid)
+            .set(newUser);
+        })
+        .then(() => {
+          commit("setLoading", false);
           commit("setUser", newUser);
         })
         .catch(error => {
@@ -504,11 +518,19 @@ export default new Vuex.Store({
       auth
         .signInWithEmailAndPassword(payload.email, payload.password)
         .then(data => {
-          commit("setLoading", false);
-          const newUser = {
-            id: data.user.uid,
-          };
-          commit("setUser", newUser);
+          db.collection("uzytkownicy")
+            .doc(data.user.uid)
+            .onSnapshot(
+              user => {
+                commit("setLoading", false);
+                const newUser = user.data();
+                commit("setUser", newUser);
+              },
+              error => {
+                commit("setLoading", false);
+                commit("setError", error);
+              }
+            );
         })
         .catch(error => {
           commit("setLoading", false);
@@ -516,12 +538,53 @@ export default new Vuex.Store({
         });
     },
     autoSignIn: ({ commit }, payload) => {
-      commit("setUser", { id: payload.uid });
+      commit("setLoading", true);
+      commit("clearError");
+      db.collection("uzytkownicy")
+        .doc(payload.uid)
+        .onSnapshot(
+          user => {
+            const newUser = user.data();
+            commit("setLoading", false);
+            commit("setUser", newUser);
+          },
+          error => {
+            commit("setLoading", false);
+            commit("setError", error);
+          }
+        );
     },
     logoutUser: ({ commit }) => {
       router.push("/");
       auth.signOut();
       commit("setUser", null);
+    },
+    updateUserProfile: ({ commit }, payload) => {
+      const userData = {
+        firstName: payload.firstName,
+        lastName: payload.lastName,
+        phone: payload.phone,
+        street: payload.street,
+        city: payload.city,
+        code: payload.code,
+      };
+      commit("setLoading", true);
+      commit("clearError");
+      db.collection("uzytkownicy")
+        .doc(payload.id)
+        .update(userData)
+        .then(() => {
+          commit("setLoading", false);
+          Toast.open({
+            duration: 3000,
+            message: "Dane użytkownika zostały zaktualizowane.",
+            type: "is-success",
+          });
+        })
+        .catch(error => {
+          commit("setLoading", false);
+          commit("setError", error);
+        });
     },
     clearError: ({ commit }) => {
       commit("clearError");
