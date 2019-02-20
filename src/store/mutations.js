@@ -24,4 +24,20 @@ export default {
       return (offer.dateFrom = parse(offer.dateFrom));
     });
   },
+  addNewOffer: (state, payload) => {
+    state.offers.push(payload);
+  },
+  updateOffer: (state, payload) => {
+    const offer = state.offers.find(offer => {
+      return offer.id === payload.id;
+    });
+    Object.assign(offer, payload);
+  },
+  deleteOffer: (state, payload) => {
+    const offerId = state.offers.find(offer => {
+      return offer.id === payload;
+    });
+    const offerIdx = state.offers.indexOf(offerId);
+    state.offers.splice(offerIdx, 1);
+  },
 };

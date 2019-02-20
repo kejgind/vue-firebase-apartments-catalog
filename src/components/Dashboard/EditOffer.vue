@@ -182,7 +182,7 @@
 
 <script>
 export default {
-  name: "dodaj",
+  name: "edytuj",
   props: ["id"],
   data() {
     return {

@@ -24,7 +24,7 @@
       >
         <div class="column is-3-tablet">
           <router-link :to="`/oferta/${offer.id}`">
-            <figure class="offer__image image is-4by3">
+            <figure class="offer__image image is-16by9">
               <img :src="getImgUrl(offer.img.src)" :alt="offer.img.alt">
             </figure>
           </router-link>
@@ -43,7 +43,10 @@
             <span class="is-hidden-tablet">Powierzchnia mieszkania:</span>
             {{offer.aptInfo.livArea}}m2
           </p>
-          <p class="has-text-weight-semibold has-text-grey-light my-1 offer__prices--two" v-if="offer.offerType === 'na-sprzedaz'">
+          <p
+            class="has-text-weight-semibold has-text-grey-light my-1 offer__prices--two"
+            v-if="offer.offerType === 'na-sprzedaz'"
+          >
             <span class="is-hidden-tablet">Cena za 1m2:</span>
             {{unitPrice(offer.price, offer.aptInfo.livArea) | formatPrice}}
           </p>
@@ -64,6 +67,11 @@ export default {
   components: { SearchBar },
   data() {
     return {};
+  },
+  created() {
+    if (!this.$store.state.offers[0]) {
+      this.$store.dispatch("loadOffers");
+    }
   },
   methods: {
     getImgUrl(pic) {

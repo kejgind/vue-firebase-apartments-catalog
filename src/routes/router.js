@@ -65,6 +65,7 @@ export default new Router({
         },
         {
           path: "edytuj/:id",
+          name: "edytuj",
           props: true,
           component: EditOffer,
           beforeEnter: AuthGuard,
