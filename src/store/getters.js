@@ -120,4 +120,7 @@ export default {
   error(state) {
     return state.error;
   },
+  searchFields(state) {
+    return state.search;
+  },
 };

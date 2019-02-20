@@ -3,7 +3,7 @@
     <h1 class="is-size-5 has-text-weight-bold mb-3">Znajdź idealne mieszkanie dla siebie już dziś!</h1>
     <form class="has-background-warning" v-on:submit.prevent="searchApt">
       <b-field class="pa-3 has-background-light" grouped group-multiline>
-        <b-select placeholder="Oferta" v-model="search.offerType">
+        <b-select placeholder="Oferta" v-model="newSearch.offerType">
           <option value="na-sprzedaz">Na sprzedaż</option>
           <option value="na-wynajem">Na wynajem</option>
         </b-select>
@@ -13,7 +13,7 @@
           placeholder="podaj szukane miasto"
           :icon="icons.search.icon"
           expanded
-          v-model="search.query"
+          v-model="newSearch.query"
           required
         ></b-input>
 
@@ -38,7 +38,7 @@
               <div class="is-flex inputs__group">
                 <b-field class="inputs__group__item">
                   <b-input
-                    v-model="search.priceMin"
+                    v-model="newSearch.priceMin"
                     aria-label="Cena minimalna"
                     size="is-small"
                     placeholder="od"
@@ -48,7 +48,7 @@
                 </b-field>
                 <b-field class="inputs__group__item">
                   <b-input
-                    v-model="search.priceMax"
+                    v-model="newSearch.priceMax"
                     aria-label="Cena maksymalna"
                     size="is-small"
                     placeholder="do"
@@ -65,7 +65,7 @@
               <div class="is-flex inputs__group">
                 <b-field class="inputs__group__item">
                   <b-input
-                    v-model="search.livAreaMin"
+                    v-model="newSearch.livAreaMin"
                     aria-label="Powierzchnia minimalna"
                     size="is-small"
                     placeholder="od"
@@ -75,7 +75,7 @@
                 </b-field>
                 <b-field class="inputs__group__item">
                   <b-input
-                    v-model="search.livAreaMax"
+                    v-model="newSearch.livAreaMax"
                     aria-label="Powierzchnia maksymalna"
                     size="is-small"
                     placeholder="do"
@@ -94,7 +94,7 @@
               <div class="is-flex inputs__group">
                 <b-field class="inputs__group__item">
                   <b-input
-                    v-model="search.floorMin"
+                    v-model="newSearch.floorMin"
                     aria-label="Piętro minimalne"
                     size="is-small"
                     placeholder="od"
@@ -105,7 +105,7 @@
                 </b-field>
                 <b-field class="inputs__group__item">
                   <b-input
-                    v-model="search.floorMax"
+                    v-model="newSearch.floorMax"
                     aria-label="Piętro maksymalne"
                     size="is-small"
                     placeholder="do"
@@ -122,7 +122,7 @@
               <div class="is-flex inputs__group">
                 <b-field class="inputs__group__item">
                   <b-input
-                    v-model="search.roomMin"
+                    v-model="newSearch.roomMin"
                     aria-label="Minimalna ilość pokoi"
                     size="is-small"
                     placeholder="od"
@@ -133,7 +133,7 @@
                 </b-field>
                 <b-field class="inputs__group__item">
                   <b-input
-                    v-model="search.roomMax"
+                    v-model="newSearch.roomMax"
                     aria-label="Maksymalna ilość pokoi"
                     size="is-small"
                     placeholder="do"
@@ -153,7 +153,7 @@
               <div class="is-flex inputs__group">
                 <b-field class="inputs__group__item">
                   <b-input
-                    v-model="search.buildMin"
+                    v-model="newSearch.buildMin"
                     aria-label="Rok budowy minimalny"
                     size="is-small"
                     placeholder="od"
@@ -164,7 +164,7 @@
                 </b-field>
                 <b-field class="inputs__group__item">
                   <b-input
-                    v-model="search.buildMax"
+                    v-model="newSearch.buildMax"
                     aria-label="Rok budowy maksymalny"
                     size="is-small"
                     placeholder="do"
@@ -181,7 +181,7 @@
               <div class="is-flex inputs__group">
                 <b-field class="inputs__group__item">
                   <b-datepicker
-                    v-model="search.avDate"
+                    v-model="newSearch.avDate"
                     aria-label="Dostępne od:"
                     size="is-small"
                     placeholder="Dostępne od"
@@ -204,7 +204,7 @@ export default {
   data() {
     return {
       icons: icons,
-      search: {
+      newSearch: {
         offerType: "",
         query: "",
         priceMin: "",
@@ -217,14 +217,17 @@ export default {
         roomMax: "",
         buildMin: "",
         buildMax: "",
-        avDate: new Date(),
+        avDate: new Date()
       }
     };
   },
+  created() {
+    Object.assign(this.newSearch, this.$store.getters.searchFields);
+  },
   methods: {
     searchApt() {
-      if (this.search.offerType && this.search.query) {
-        this.$store.commit("searchApt", this.search);
+      if (this.newSearch.offerType && this.newSearch.query) {
+        this.$store.commit("searchApt", this.newSearch);
         if (this.$router.history.current.path !== "/szukaj") {
           this.$router.push("/szukaj");
         }
@@ -233,41 +236,41 @@ export default {
   },
   computed: {
     formIsValidated() {
-      if (this.search.offerType === "" || this.search.query === "") {
+      if (this.newSearch.offerType === "" || this.newSearch.query === "") {
         return false;
       }
       if (
-        this.search.priceMin !== "" &&
-        this.search.priceMax !== "" &&
-        this.search.priceMin > this.search.priceMax
+        this.newSearch.priceMin !== "" &&
+        this.newSearch.priceMax !== "" &&
+        this.newSearch.priceMin > this.newSearch.priceMax
       ) {
         return false;
       }
       if (
-        this.search.livAreaMin !== "" &&
-        this.search.livAreaMax !== "" &&
-        this.search.livAreaMin > this.search.livAreaMax
+        this.newSearch.livAreaMin !== "" &&
+        this.newSearch.livAreaMax !== "" &&
+        this.newSearch.livAreaMin > this.newSearch.livAreaMax
       ) {
         return false;
       }
       if (
-        this.search.floorMin !== "" &&
-        this.search.floorMax !== "" &&
-        this.search.floorMin > this.search.floorMax
+        this.newSearch.floorMin !== "" &&
+        this.newSearch.floorMax !== "" &&
+        this.newSearch.floorMin > this.newSearch.floorMax
       ) {
         return false;
       }
       if (
-        this.search.roomMin !== "" &&
-        this.search.roomMax !== "" &&
-        this.search.roomMin > this.search.roomMax
+        this.newSearch.roomMin !== "" &&
+        this.newSearch.roomMax !== "" &&
+        this.newSearch.roomMin > this.newSearch.roomMax
       ) {
         return false;
       }
       if (
-        this.search.buildMin !== "" &&
-        this.search.buildMax !== "" &&
-        this.search.buildMin > this.search.buildMax
+        this.newSearch.buildMin !== "" &&
+        this.newSearch.buildMax !== "" &&
+        this.newSearch.buildMin > this.newSearch.buildMax
       ) {
         return false;
       }

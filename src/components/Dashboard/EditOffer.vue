@@ -186,7 +186,24 @@ export default {
   props: ["id"],
   data() {
     return {
-      updOffer: {}
+      updOffer: {
+        offerType: "",
+        address: {
+          street: "",
+          code: "",
+          city: ""
+        },
+        price: "",
+        dateFrom: new Date(),
+        aptInfo: {
+          roomCount: "",
+          livArea: "",
+          floorNo: "",
+          buildYear: ""
+        },
+        title: "",
+        content: ""
+      }
     };
   },
   created() {

@@ -50,7 +50,14 @@ export default {
   name: "edytuj",
   data() {
     return {
-      updUser: {}
+      updUser: {
+        firstName: "",
+        lastName: "",
+        phone: "",
+        street: "",
+        city: "",
+        code: ""
+      }
     };
   },
   created() {

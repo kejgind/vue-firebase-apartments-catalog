@@ -84,10 +84,6 @@ export default {
       },
       title: payload.title,
       content: payload.content,
-      img: {
-        src: payload.img.src,
-        alt: payload.img.alt,
-      },
     };
     commit("setLoading", true);
     commit("clearError");
