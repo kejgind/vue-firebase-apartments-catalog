@@ -70,7 +70,7 @@
           <div class="card-content">
             <div class="content">
               <h3 class="is-size-5">Dane kontaktowe:</h3>
-              <p>Imię i Nazwisko: {{user.firstName}} {{user.lastName}}</p>
+              <p>Firma: {{user.company}} {{user.firstName}} {{user.lastName}}</p>
               <p>Email: {{user.email}}</p>
               <p>Telefon: +48 {{user.phone}}</p>
             </div>
@@ -89,13 +89,11 @@ export default {
     return {
       icons: icons,
       user: {
-        email: "fake@email.com",
-        phone: "987 654 321",
-        firstName: "Jan",
-        lastName: "Kowalski",
-        street: "ul. Główna 1",
-        city: "Wrocław",
-        code: "54-456"
+        email: "krzysztof.garbowski@mediakg.pl",
+        phone: "+48 609 610 136",
+        company: "mediaKG",
+        firstName: "Krzysztof",
+        lastName: "Garbowski"
       },
       contactModalShow: false
     };

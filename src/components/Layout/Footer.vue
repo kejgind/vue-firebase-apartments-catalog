@@ -32,7 +32,7 @@
     <div class="content has-text-centered has-background-grey-light py-3">
       <p>
         &copy;2019 -
-        <strong>mediaKG</strong>
+        <a href="https://www.mediakg.pl" target="_blank" rel="noopener"><strong>mediaKG</strong></a>
       </p>
     </div>
   </footer>
