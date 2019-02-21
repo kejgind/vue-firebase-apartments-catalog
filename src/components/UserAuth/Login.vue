@@ -24,6 +24,18 @@
           :disabled="!formIsValid || loading"
         >Zaloguj</button>
       </form>
+      <b-collapse :open="false" class="small-form mx-auto mt-4">
+        <button class="button is-light" slot="trigger">Sprawdź jak się zalogować</button>
+        <div class="notification">
+          <div class="content">
+            <h2 class="is-size-5">Logowanie do panelu użytkownika wersji demo</h2>
+            <p>W celu zalogowania się do panelu użytkownika wersji demo wpisz dane jak poniżej
+              <br><strong>Email:</strong> demo@demo.pl
+              <br><strong>Hasło:</strong> 123456789
+            </p>
+          </div>
+        </div>
+      </b-collapse>
     </div>
   </section>
 </template>
